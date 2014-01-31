@@ -7,5 +7,6 @@
     <string name="login">Login</string>
     <string name="welcometext">Welcome to CashFlow. Click Login to continue.</string>
     <string name="appicon">App Icon</string>
+    <string name="register">Register</string>
 
 </resources>

@@ -26,6 +26,7 @@ public final class R {
     public static final class id {
         public static final int iconview=0x7f080001;
         public static final int loginbutton=0x7f080002;
+        public static final int registerbutton=0x7f080003;
         public static final int welcometext=0x7f080000;
     }
     public static final class layout {
@@ -40,6 +41,7 @@ public final class R {
         public static final int appicon=0x7f050005;
         public static final int hello_world=0x7f050002;
         public static final int login=0x7f050003;
+        public static final int register=0x7f050006;
         public static final int welcometext=0x7f050004;
     }
     public static final class style {
