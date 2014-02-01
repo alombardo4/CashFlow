@@ -8,5 +8,8 @@
     <string name="welcometext">Welcome to CashFlow. Click Login to continue.</string>
     <string name="appicon">App Icon</string>
     <string name="register">Register</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
 
 </resources>
