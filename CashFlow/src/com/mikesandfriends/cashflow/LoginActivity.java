@@ -2,6 +2,8 @@ package com.mikesandfriends.cashflow;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 
 public class LoginActivity extends Activity {
@@ -14,7 +16,9 @@ public class LoginActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+        getActionBar().setTitle("Login");
+        getActionBar().setBackgroundDrawable(new ColorDrawable(
+        		Color.parseColor("#035986")));
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}

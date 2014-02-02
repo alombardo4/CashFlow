@@ -2,6 +2,7 @@ package com.mikesandfriends.cashflow;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
@@ -36,7 +37,8 @@ public class WelcomeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO put in the transition to login page
-				
+				Intent i = new Intent(getBaseContext(), LoginActivity.class);
+				startActivity(i);
 			}
 		});
     }
