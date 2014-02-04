@@ -17,6 +17,8 @@ import android.widget.Button;
 public class WelcomeActivity extends Activity {
 
 	
+	
+	
 	@Override
 	/**
 	 * Called when the view is created
@@ -36,7 +38,6 @@ public class WelcomeActivity extends Activity {
         	 */
 			@Override
 			public void onClick(View v) {
-				// TODO put in the transition to login page
 				Intent i = new Intent(getBaseContext(), LoginActivity.class);
 				startActivity(i);
 			}

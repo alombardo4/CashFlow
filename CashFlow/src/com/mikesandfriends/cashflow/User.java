@@ -58,5 +58,17 @@ public class User {
 		this.password = password;
 	}
 	
+	public boolean equals(Object other) {
+		if(this.username.equals(((User) other).getUsername())) {
+			if(this.password.equals(((User) other).getPassword())) {
+				return true;	
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+		
+	}
 	
 }
