@@ -21,6 +21,10 @@ public class LoginHandler {
 	public LoginHandler(Context context) {
 		adapt = new CashFlowDBAdapter(context);
 		adapt.open();
+		User admin = new User("admin", "pass1234");
+		if (!checkLogin(admin)) {
+			add(admin);
+		}
 	}
 	
 	/** 

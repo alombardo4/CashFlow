@@ -42,9 +42,7 @@ public class LoginActivity extends Activity {
 		        	int duration = Toast.LENGTH_SHORT;
 		        	username.setText("");
 		        	password.setText("");
-		        	Toast toast = new Toast(getBaseContext());
 		        	Toast.makeText(getBaseContext(), text, duration).show();
-		        	toast.show();
 		        	
 		        }
 			}
