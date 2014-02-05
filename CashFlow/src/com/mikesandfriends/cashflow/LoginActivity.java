@@ -36,6 +36,7 @@ public class LoginActivity extends Activity {
 		                
 		        if(lh.checkLogin(user)){
 		        	startActivity(i);
+		        	lh.closeAdapt();
 		        }
 		        else{
 		        	CharSequence text = "Incorrect Username or Password";
