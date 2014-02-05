@@ -26,6 +26,10 @@
             android:name="com.mikesandfriends.cashflow.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.M4SuccessActivity"
+            android:label="@string/title_activity_m4_success" >
+        </activity>
     </application>
 
 </manifest>

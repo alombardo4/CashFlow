@@ -31,6 +31,8 @@ public class WelcomeActivity extends Activity {
         getActionBar().setBackgroundDrawable(new ColorDrawable(
         		Color.parseColor("#035986")));
         
+
+        
         Button loginButton = (Button) findViewById(R.id.loginbutton);
         loginButton.setOnClickListener(new View.OnClickListener() {
         	/**

@@ -11,5 +11,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="username">username</string>
     <string name="password">password</string>
+    <string name="title_activity_m4_success">M4SuccessActivity</string>
+    <string name="success">Success!</string>
 
 </resources>
