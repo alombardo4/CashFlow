@@ -18,6 +18,10 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+        getActionBar().setTitle("Log In");
+        getActionBar().setBackgroundDrawable(new ColorDrawable(
+        		Color.parseColor("#035986")));
+		
         Button loginButton = (Button) findViewById(R.id.loginscreenloginbutton);
         
         final LoginHandler lh = new LoginHandler(getBaseContext());
@@ -37,6 +41,7 @@ public class LoginActivity extends Activity {
 		        if(lh.checkLogin(user)){
 		        	startActivity(i);
 		        	lh.closeAdapt();
+		        	finish();
 		        }
 		        else{
 		        	CharSequence text = "Incorrect Username or Password";
