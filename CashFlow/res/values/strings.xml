@@ -13,5 +13,7 @@
     <string name="password">password</string>
     <string name="title_activity_m4_success">M4SuccessActivity</string>
     <string name="success">Success!</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="Register">Register</string>
 
 </resources>

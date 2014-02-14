@@ -44,6 +44,18 @@ public class WelcomeActivity extends Activity {
 				startActivity(i);
 			}
 		});
+        
+        
+        Button registerButton = (Button) findViewById(R.id.registerbutton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				
+				Intent i = new Intent(getBaseContext(),RegisterActivity.class);
+				startActivity(i);
+			}
+		});
     }
 
 

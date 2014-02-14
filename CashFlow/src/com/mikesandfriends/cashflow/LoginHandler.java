@@ -27,6 +27,21 @@ public class LoginHandler {
 		}
 	}
 	
+	/**
+	 * Check to see if the username already exists
+	 * @return boolean 
+	 */
+	public boolean isValidUsername(String username){
+		
+		ArrayList<User> userList = adapt.getUsers();		
+		for(User user : userList){
+			if(user.getUsername().toString().equals(username.toString()))
+				return false;
+		}
+		return true;
+	}
+	
+
 	/** 
 	* Checks the info to the passed information
 	* @return returns boolean based on login
