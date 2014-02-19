@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class RegisterActivity extends Activity {
 
 	
-	private LoginHandler lh;
+	private UserDataHandler lh;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class RegisterActivity extends Activity {
         
         Button RegisterButton = (Button) findViewById(R.id.registerscreenregisterbutton);
         
-        lh = new LoginHandler(getBaseContext());
+        lh = new UserDataHandler(getBaseContext());
         
         RegisterButton.setOnClickListener(new View.OnClickListener() {
         	/**

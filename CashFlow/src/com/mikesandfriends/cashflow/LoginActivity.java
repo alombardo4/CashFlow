@@ -24,7 +24,7 @@ public class LoginActivity extends Activity {
 		
         Button loginButton = (Button) findViewById(R.id.loginscreenloginbutton);
         
-        final LoginHandler lh = new LoginHandler(getBaseContext());
+        final UserDataHandler lh = new UserDataHandler(getBaseContext());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
         	/**

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import android.content.Context;
 
 /**
-* Check the Login against the database
+* Handles getting all data for a user from the database
 *
 * @author Michael Avery
 * @version 1.0
 *
 */
-public class LoginHandler {
+public class UserDataHandler {
 	
 	private CashFlowDBAdapter adapt;
 	
@@ -18,7 +18,7 @@ public class LoginHandler {
 	 * Login Check constructor
 	 * @param context
 	 */
-	public LoginHandler(Context context) {
+	public UserDataHandler(Context context) {
 		adapt = new CashFlowDBAdapter(context);
 		adapt.open();
 		User admin = new User("admin", "pass1234");
@@ -76,7 +76,32 @@ public class LoginHandler {
 		return adapt.getUsers();
 		
 	}
+	/**
+	 * Gets all the accounts for a user
+	 * @param user User to get accounts for
+	 * @return the accounts
+	 */
+	public ArrayList<Account> getAccountsForUser(User user) {
+		return adapt.getAccountsForUser(user);
+	}
 	
+	/**
+	 * Creates an account for the given user
+	 * @param name Name of the account
+	 * @param user User to create the account for
+	 */
+	public void createAccount(String name, User user) {
+		adapt.addAccountToUser(name, user);
+	}
+	
+	/**
+	 * Deletes the account for the given user
+	 * @param name Name of the account to delete
+	 * @param user User that owns the account
+	 */
+	public void deleteAccount(String name, User user) {
+		adapt.deleteAccount(name, user);
+	}
 	
 	/** 
 	* Closes the adapter
