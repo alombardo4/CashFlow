@@ -90,8 +90,8 @@ public class UserDataHandler {
 	 * @param name Name of the account
 	 * @param user User to create the account for
 	 */
-	public void createAccount(String name, User user) {
-		adapt.addAccountToUser(name, user);
+	public void createAccount(Account account, User user) {
+		adapt.addAccountToUser(account.getName(), user);
 	}
 	
 	/**

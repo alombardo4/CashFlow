@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +19,10 @@ public class NewAccountActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_account);
-		
-Button submitNewAccount = (Button) findViewById(R.id.addthisaccount);
+        getActionBar().setTitle("New Account");
+        getActionBar().setBackgroundDrawable(new ColorDrawable(
+        		Color.parseColor("#035986")));
+		Button submitNewAccount = (Button) findViewById(R.id.addthisaccount);
 
         submitNewAccount.setOnClickListener(new View.OnClickListener() {
         	/**
@@ -27,14 +31,14 @@ Button submitNewAccount = (Button) findViewById(R.id.addthisaccount);
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getBaseContext(), AccountActivity.class);
-				
+				i.putExtras(getIntent().getExtras());
 				EditText accountName = (EditText)findViewById(R.id.accountname);
 		        User user = (User)getIntent().getExtras().getSerializable("user");
 		        UserDataHandler dh = new UserDataHandler(getBaseContext());
 		        ArrayList<Account> accountList = dh.getAccountsForUser(user);
-		       
-		        if(!accountList.contains(accountName.getText())){
-		        	dh.createAccount(accountName.getText().toString(), user);
+		        Account newAccount = new Account(accountName.getText().toString());
+		        if(!accountList.contains(newAccount)){
+		        	dh.createAccount(newAccount, user);
 		        	startActivity(i);
 		        	dh.closeAdapt();
 		        	finish();
@@ -55,7 +59,6 @@ Button submitNewAccount = (Button) findViewById(R.id.addthisaccount);
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new_account, menu);
 		return true;
 	}
 

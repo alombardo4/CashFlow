@@ -14,7 +14,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"
         android:text="@string/NewAccount" />
+
+    <ListView
+        android:id="@+id/accountslist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newaccount"
+        android:layout_centerHorizontal="true" >
+
+    </ListView>
 
 </RelativeLayout>

@@ -25,7 +25,8 @@ public class CashFlowDBAdapter {
 	private static String databaseName;
 	private static final int DATABASE_VERSION = 1;
 	private static final String TAG = "CashFlowDBAdapter";
-	private static String databaseCreate;
+	private static String usersCreate;
+	private static String accountsCreate;
 	@SuppressWarnings("unused")
 	private  Context context;
 	private DatabaseHelper DBHelper;
@@ -162,10 +163,11 @@ public class CashFlowDBAdapter {
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		DatabaseHelper(Context context) {
 			super(context, databaseName, null, DATABASE_VERSION);
-			databaseCreate = "CREATE TABLE " + "users" + " (" + KEY_USERNAME + " TEXT, "
-								+ KEY_USERPASSWORD + " TEXT);\nCREATE TABLE accounts ("
-								+ KEY_ACCOUNTNAME + " TEXT, " + KEY_ACCOUNTOWNER
-								+ "TEXT);";
+			usersCreate = "CREATE TABLE " + "users" + " (" + KEY_USERNAME + " TEXT, "
+								+ KEY_USERPASSWORD + " TEXT);";
+			accountsCreate = "CREATE TABLE " + "accounts" + " ("
+								+ KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME
+								+ " TEXT);";
 		
 		}
 		
@@ -176,7 +178,8 @@ public class CashFlowDBAdapter {
 		*/
 		public void onCreate(SQLiteDatabase db) {
 			try {
-				db.execSQL(databaseCreate);
+				db.execSQL(usersCreate);
+				db.execSQL(accountsCreate);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
