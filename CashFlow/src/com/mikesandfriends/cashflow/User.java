@@ -1,11 +1,11 @@
 package com.mikesandfriends.cashflow;
-
+import java.io.Serializable;
 /**
  * Represents a User for login
  * @author Alec Lombardo
  * @version 1.0
  */
-public class User {
+public class User implements Serializable {
 	private String username;
 	private String password;
 	

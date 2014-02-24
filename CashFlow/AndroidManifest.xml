@@ -34,6 +34,14 @@
             android:name="com.mikesandfriends.cashflow.RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.NewAccountActivity"
+            android:label="@string/title_activity_new_account" >
+        </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.AccountActivity"
+            android:label="@string/title_activity_account" >
+        </activity>
     </application>
 
 </manifest>

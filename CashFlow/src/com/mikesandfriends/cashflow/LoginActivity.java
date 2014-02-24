@@ -32,12 +32,14 @@ public class LoginActivity extends Activity {
         	 */
 			@Override
 			public void onClick(View v) {
-				Intent i = new Intent(getBaseContext(), M4SuccessActivity.class);
+				Intent i = new Intent(getBaseContext(), AccountActivity.class);
 				EditText username = (EditText)findViewById(R.id.usernametext);
 				EditText password = (EditText)findViewById(R.id.passwordtext);
 
 		        User user = new User(username.getText().toString(),password.getText().toString());
-		                
+		        Bundle bundle = new Bundle();
+		        bundle.putSerializable("user", user);
+		        i.putExtras(bundle);
 		        if(lh.checkLogin(user)){
 		        	startActivity(i);
 		        	lh.closeAdapt();

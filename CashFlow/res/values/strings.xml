@@ -15,5 +15,11 @@
     <string name="success">Success!</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="Register">Register</string>
+    <string name="title_activity_new_account">NewAccountActivity</string>
+    <string name="newaccountbutton">Create New Account</string>
+    <string name="title_activity_account">AccountActivity</string>
+    <string name="NewAccount">NewAccount</string>
+    <string name="AccountName">Account Name</string>
+    <string name="AddThisAccount">Add This Account</string>
 
 </resources>
