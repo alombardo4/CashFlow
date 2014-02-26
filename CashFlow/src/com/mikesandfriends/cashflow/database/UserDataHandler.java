@@ -1,6 +1,11 @@
-package com.mikesandfriends.cashflow;
+package com.mikesandfriends.cashflow.database;
 
 import java.util.ArrayList;
+
+import com.mikesandfriends.cashflow.Account;
+import com.mikesandfriends.cashflow.Transaction;
+import com.mikesandfriends.cashflow.User;
+
 import android.content.Context;
 
 /**

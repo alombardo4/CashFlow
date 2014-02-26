@@ -51,8 +51,4 @@ public class Transaction {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
-	
-	
-	
 }
