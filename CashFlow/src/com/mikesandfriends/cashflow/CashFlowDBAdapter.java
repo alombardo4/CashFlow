@@ -22,11 +22,14 @@ public class CashFlowDBAdapter {
 	private static final String KEY_USERPASSWORD = "password";
 	private static final String KEY_ACCOUNTNAME = "name";
 	private static final String KEY_ACCOUNTOWNER = "owner";
+	private static final String KEY_TRANSACTIONNAME = "transName";
+	private static final String KEY_TRANSACTIONAMOUNT = "transAmount";
 	private static String databaseName;
 	private static final int DATABASE_VERSION = 1;
 	private static final String TAG = "CashFlowDBAdapter";
 	private static String usersCreate;
 	private static String accountsCreate;
+	private static String transactionsCreate;
 	@SuppressWarnings("unused")
 	private  Context context;
 	private DatabaseHelper DBHelper;
@@ -67,6 +70,7 @@ public class CashFlowDBAdapter {
 	public void rebuild() {
 		DBHelper.onCreate(db);
 	}
+	
 	
 	
 	
@@ -156,6 +160,66 @@ public class CashFlowDBAdapter {
 	}
 	
 	/**
+	 * Adds a transaction to a user's account
+	 * @param transaction transaction to be added
+	 * @param account account to add transaction to
+	 * @param user user who owns the account
+	 */
+	public void addTransactionToAccount(Transaction transaction,
+			Account account, User user) {
+		ContentValues values;
+		values = new ContentValues();
+		values.put(KEY_ACCOUNTNAME, account.getName());
+		values.put(KEY_ACCOUNTOWNER, user.getUsername());
+		values.put(KEY_TRANSACTIONNAME, transaction.getName());
+		values.put(KEY_TRANSACTIONAMOUNT,
+				Integer.toString(transaction.getAmount()));
+		db.insert("transactions", null, values);	
+	}
+	
+	/**
+	 * Returns all transactions for a given user account
+	 * @param account Account owning the transactions
+	 * @param user User owning the account
+	 * @return transactions for the account
+	 */
+	public ArrayList<Transaction> getTransactionsForAccount(Account account,
+			User user) {
+		ArrayList<Transaction> trans = new ArrayList<Transaction>();
+		String[] columns = {KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER,
+				KEY_TRANSACTIONAMOUNT, KEY_TRANSACTIONNAME};
+		Cursor cursor = db.query("transactions", columns, null, null, null,
+				null, null);
+		
+		cursor.moveToFirst();
+		for (int i = 0; i < cursor.getCount(); i++) {
+			if (cursor.getString(1).equals(user.getUsername()) &&
+					cursor.getString(0).equals(account.getName())) {
+				trans.add(new Transaction(cursor.getString(3),
+						Integer.parseInt(cursor.getString(2))));
+			}
+			cursor.moveToNext();
+		}
+		return trans;
+	}
+	
+	/**
+	 * Deletes a transaction
+	 * @param transaction the transaction to delete
+	 * @param account the account owning the transaction
+	 * @param user User who owns the account
+	 */
+	public void deleteTransaction(Transaction transaction, Account account,
+			User user) {
+		String[] whereArgs = {transaction.getName(),
+				Integer.toString(transaction.getAmount()), account.getName(),
+				user.getUsername()};
+		db.delete("transactions", KEY_TRANSACTIONNAME + "=? AND "
+				+ KEY_TRANSACTIONAMOUNT + "=? AND "	+ KEY_ACCOUNTNAME
+				+ "=? AND " + KEY_USERNAME + "=?", whereArgs);
+	}
+	
+	/**
 	* Supplementary Database helper class
 	* @author Alec Lombardo 
 	* @version 1.0
@@ -168,6 +232,10 @@ public class CashFlowDBAdapter {
 			accountsCreate = "CREATE TABLE " + "accounts" + " ("
 								+ KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME
 								+ " TEXT);";
+			transactionsCreate = "CREATE TABLE " + "transactions" + " ("
+								+ KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME
+								+ " TEXT, " + KEY_TRANSACTIONNAME + " TEXT, "
+								+ KEY_TRANSACTIONAMOUNT + " TEXT);";
 		
 		}
 		
@@ -180,6 +248,7 @@ public class CashFlowDBAdapter {
 			try {
 				db.execSQL(usersCreate);
 				db.execSQL(accountsCreate);
+				db.execSQL(transactionsCreate);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -195,7 +264,8 @@ public class CashFlowDBAdapter {
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			Log.w(TAG, "Upgrading database will destroy all data in the table");
 			db.execSQL("DROP TABLE IF EXISTS " + "users");
-			db.execSQL("DROP TABLE IF EXISTS + accounts");
+			db.execSQL("DROP TABLE IF EXISTS accounts");
+			db.execSQL("DROP TABLE IF EXISTS transactions");
 			onCreate(db);
 		}		
 	}

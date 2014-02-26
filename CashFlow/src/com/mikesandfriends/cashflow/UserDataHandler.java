@@ -103,6 +103,54 @@ public class UserDataHandler {
 		adapt.deleteAccount(name, user);
 	}
 	
+	/**
+	 * Adds a transaction to an account
+	 * @param transaction Transaction to add
+	 * @param account Account to own transaction
+	 * @param user User that owns account
+	 */
+	public void addTransactiontoAccount(Transaction transaction,
+			Account account, User user) {
+		adapt.addTransactionToAccount(transaction, account, user);
+	}
+	
+	/**
+	 * Gets all transactions for a given account
+	 * @param account Account owning transactions
+	 * @param user User owning account
+	 * @return all transactions for an account
+	 */
+	public ArrayList<Transaction> getTransactionsForAccount(Account account,
+			User user) {
+		return adapt.getTransactionsForAccount(account, user);
+	}
+	
+	/**
+	 * Computes the balance for a given account
+	 * @param account Account to calculate for
+	 * @param user Use who owns the account
+	 * @return balance
+	 */
+	public int getBalanceForAccount(Account account, User user) {
+		ArrayList<Transaction> trans = getTransactionsForAccount(account, user);
+		int balance = 0;
+		for (Transaction transaction : trans) {
+			balance += transaction.getAmount();
+		}
+		return balance;
+	}
+	
+	/**
+	 * Deletes a transaction
+	 * @param transaction Transaction to delete
+	 * @param account Account owning the transaction
+	 * @param user User who owns the account
+	 */
+	public void deleteTransaction(Transaction transaction, Account account,
+			User user) {
+		adapt.deleteTransaction(transaction, account, user);
+	}
+	
 	/** 
 	* Closes the adapter
 	* @param none
