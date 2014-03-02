@@ -17,13 +17,15 @@ public class MyAccountActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_account);
 		
-		Bundle b = new Bundle();
-		b = getIntent().getExtras();
-		String ids = b.getString("accountName");
+		Bundle b = savedInstanceState;
+		String ids = getIntent().getExtras().getString("accountName");
 		
-		getActionBar().setTitle(ids);
+		getActionBar().setTitle("Crap");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
         		Color.parseColor("#035986")));
+        
+        
+        
         
         
         

@@ -23,5 +23,9 @@
     <string name="AddThisAccount">Add This Account</string>
     <string name="title_activity_transaction">TransactionActivity</string>
     <string name="title_activity_my_account">MyAccountActivity</string>
+    <string name="accountBalance">Balance:</string>
+    <string name="accountName">Account Name: </string>
+    <string name="transAmount">amount</string>
+    <string name="plusMinus">+ / -</string>
 
 </resources>

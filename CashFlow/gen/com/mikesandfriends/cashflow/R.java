@@ -24,19 +24,23 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int accountname=0x7f080005;
+        public static final int accountBalance=0x7f080005;
+        public static final int accountName=0x7f080006;
+        public static final int accountname=0x7f080009;
         public static final int accountslist=0x7f080001;
-        public static final int action_settings=0x7f08000c;
-        public static final int addthisaccount=0x7f080006;
-        public static final int iconview=0x7f080009;
-        public static final int loginbutton=0x7f08000a;
+        public static final int action_settings=0x7f080010;
+        public static final int addthisaccount=0x7f08000a;
+        public static final int iconview=0x7f08000d;
+        public static final int loginbutton=0x7f08000e;
         public static final int loginscreenloginbutton=0x7f080004;
         public static final int newaccount=0x7f080000;
         public static final int passwordtext=0x7f080002;
-        public static final int registerbutton=0x7f08000b;
-        public static final int registerscreenregisterbutton=0x7f080007;
+        public static final int registerbutton=0x7f08000f;
+        public static final int registerscreenregisterbutton=0x7f08000b;
+        public static final int transButton=0x7f080008;
+        public static final int transactionAmount=0x7f080007;
         public static final int usernametext=0x7f080003;
-        public static final int welcometext=0x7f080008;
+        public static final int welcometext=0x7f08000c;
     }
     public static final class layout {
         public static final int activity_account=0x7f030000;
@@ -62,6 +66,8 @@ public final class R {
         public static final int AddThisAccount=0x7f050013;
         public static final int NewAccount=0x7f050011;
         public static final int Register=0x7f05000d;
+        public static final int accountBalance=0x7f050016;
+        public static final int accountName=0x7f050017;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int appicon=0x7f050005;
@@ -69,6 +75,7 @@ public final class R {
         public static final int login=0x7f050003;
         public static final int newaccountbutton=0x7f05000f;
         public static final int password=0x7f050009;
+        public static final int plusMinus=0x7f050019;
         public static final int register=0x7f050006;
         public static final int success=0x7f05000b;
         public static final int title_activity_account=0x7f050010;
@@ -78,6 +85,7 @@ public final class R {
         public static final int title_activity_new_account=0x7f05000e;
         public static final int title_activity_register=0x7f05000c;
         public static final int title_activity_transaction=0x7f050014;
+        public static final int transAmount=0x7f050018;
         public static final int username=0x7f050008;
         public static final int welcometext=0x7f050004;
     }

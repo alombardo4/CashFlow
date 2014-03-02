@@ -9,8 +9,48 @@
     tools:context=".MyAccountActivity" >
 
     <TextView
+        android:id="@+id/accountBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:inputType="none" 
+        android:text="@string/accountBalance"/>
+
+    <TextView
+        android:id="@+id/accountName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/accountBalance"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="34dp"
+        android:ems="10" 
+        android:text = "@string/accountName"/>
+
+    <EditText
+        android:id="@+id/transactionAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accountBalance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="83dp"
+        android:ems="10"
+        android:background="#d3d3d3"
+        android:inputType="number"
+        android:hint="@string/transAmount" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/transButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transactionAmount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="@string/plusMinus" />
 
 </RelativeLayout>

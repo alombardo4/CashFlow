@@ -1,6 +1,7 @@
 package com.mikesandfriends.cashflow.activities;
 
 import java.util.ArrayList;
+import java.lang.*;
 
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
@@ -15,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -66,9 +68,9 @@ public class AccountActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View  view, int position, long id) 
 		        {
-					String indexTag = (String)view.getTag();
+					String indexTag = (String) view.getTag();
 					Intent i = new Intent(getBaseContext(),MyAccountActivity.class);
-					i.putExtra("accountName", indexTag); //(String) listview.getItemAtPosition(position));
+					i.putExtras(getIntent().getExtras());//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
 					startActivity(i);
 		         }
 		 });
