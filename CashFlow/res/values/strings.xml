@@ -21,5 +21,7 @@
     <string name="NewAccount">NewAccount</string>
     <string name="AccountName">Account Name</string>
     <string name="AddThisAccount">Add This Account</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
+    <string name="title_activity_my_account">MyAccountActivity</string>
 
 </resources>

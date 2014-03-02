@@ -42,17 +42,20 @@ public final class R {
         public static final int activity_account=0x7f030000;
         public static final int activity_login=0x7f030001;
         public static final int activity_m4_success=0x7f030002;
-        public static final int activity_new_account=0x7f030003;
-        public static final int activity_register=0x7f030004;
-        public static final int activity_welcome=0x7f030005;
+        public static final int activity_my_account=0x7f030003;
+        public static final int activity_new_account=0x7f030004;
+        public static final int activity_register=0x7f030005;
+        public static final int activity_welcome=0x7f030006;
     }
     public static final class menu {
         public static final int account=0x7f070000;
         public static final int login=0x7f070001;
         public static final int m4_success=0x7f070002;
-        public static final int new_account=0x7f070003;
-        public static final int register=0x7f070004;
-        public static final int welcome=0x7f070005;
+        public static final int my_account=0x7f070003;
+        public static final int new_account=0x7f070004;
+        public static final int register=0x7f070005;
+        public static final int transaction=0x7f070006;
+        public static final int welcome=0x7f070007;
     }
     public static final class string {
         public static final int AccountName=0x7f050012;
@@ -71,8 +74,10 @@ public final class R {
         public static final int title_activity_account=0x7f050010;
         public static final int title_activity_login=0x7f050007;
         public static final int title_activity_m4_success=0x7f05000a;
+        public static final int title_activity_my_account=0x7f050015;
         public static final int title_activity_new_account=0x7f05000e;
         public static final int title_activity_register=0x7f05000c;
+        public static final int title_activity_transaction=0x7f050014;
         public static final int username=0x7f050008;
         public static final int welcometext=0x7f050004;
     }
