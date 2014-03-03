@@ -1,6 +1,7 @@
 package com.mikesandfriends.cashflow.activities;
 
 import java.util.ArrayList;
+import java.lang.*;
 
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
@@ -10,16 +11,22 @@ import com.mikesandfriends.cashflow.R.layout;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
+@SuppressLint("CutPasteId")
 public class AccountActivity extends Activity {
 	private ArrayList<Account> items;
 	private UserDataHandler udh;
@@ -54,12 +61,30 @@ public class AccountActivity extends Activity {
 			arrayAdapter.add(item.getName());
 		}
 		accountsList.setAdapter(arrayAdapter);
+		
+		ListView listview = (ListView) findViewById(R.id.accountslist);
+		listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+		{
+		@Override
+		public void onItemClick(AdapterView<?> parent, View  view, int position, long id) 
+		        {
+					String indexTag = (String) view.getTag();
+					Intent i = new Intent(getBaseContext(),MyAccountActivity.class);
+					i.putExtras(getIntent().getExtras());//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
+					startActivity(i);
+		         }
+		 });
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		return true;
+	}
+	
+	public void onItemClick(){
+		
+		
 	}
 
 }
