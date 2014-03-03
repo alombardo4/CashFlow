@@ -26,6 +26,8 @@
     <string name="accountBalance">Balance:</string>
     <string name="accountName">Account Name: </string>
     <string name="transAmount">amount</string>
-    <string name="plusMinus">+ / -</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="description">description</string>
 
 </resources>

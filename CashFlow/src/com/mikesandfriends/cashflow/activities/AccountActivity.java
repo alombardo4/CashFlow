@@ -68,9 +68,13 @@ public class AccountActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View  view, int position, long id) 
 		        {
-					String indexTag = (String) view.getTag();
+					Account account = items.get(position);
+					String indexTag = account.getName();
 					Intent i = new Intent(getBaseContext(),MyAccountActivity.class);
-					i.putExtras(getIntent().getExtras());//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
+					Bundle b = new Bundle();
+					b.putSerializable("accountName", indexTag);
+					b.putSerializable("user", user);
+					i.putExtras(b);//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
 					startActivity(i);
 		         }
 		 });
