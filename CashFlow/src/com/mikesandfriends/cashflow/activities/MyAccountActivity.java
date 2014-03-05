@@ -2,15 +2,12 @@ package com.mikesandfriends.cashflow.activities;
 
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
-import com.mikesandfriends.cashflow.R.layout;
-import com.mikesandfriends.cashflow.R.menu;
 import com.mikesandfriends.cashflow.Transaction;
 import com.mikesandfriends.cashflow.User;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
@@ -62,8 +59,9 @@ public class MyAccountActivity extends Activity {
 	    			int money = Integer.parseInt(transAmount.getText().toString());
 	    			int afterTrans = balance + money;
 	    			balanceOnScreen.setText("Balance: $" + afterTrans);
-	    			Transaction trans = new Transaction(description.toString(),money);
-	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
+	    			//TODO redo adding transaction
+//	    			Transaction trans = new Transaction(description.toString(),money);
+//	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
     			}
     			else{
     				CharSequence text;
@@ -95,8 +93,9 @@ public class MyAccountActivity extends Activity {
 	    			int afterTrans = balance - money;
 	    			balanceOnScreen.setText("Balance: $" + afterTrans);
 	    			money = money - 2*money;
-	    			Transaction trans = new Transaction(description.toString(),money);
-	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
+	    			//TODO redo adding transaction
+//	    			Transaction trans = new Transaction(description.toString(),money);
+//	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
     			}
     			else{
     				CharSequence text;

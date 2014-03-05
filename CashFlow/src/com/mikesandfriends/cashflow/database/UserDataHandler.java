@@ -1,8 +1,10 @@
 package com.mikesandfriends.cashflow.database;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import com.mikesandfriends.cashflow.Account;
+import com.mikesandfriends.cashflow.SpendingCategoryReport;
 import com.mikesandfriends.cashflow.Transaction;
 import com.mikesandfriends.cashflow.User;
 
@@ -154,6 +156,20 @@ public class UserDataHandler {
 	public void deleteTransaction(Transaction transaction, Account account,
 			User user) {
 		adapt.deleteTransaction(transaction, account, user);
+	}
+	
+	public SpendingCategoryReport generateSpendingCategoryReport(User user,
+			Account account, GregorianCalendar start, GregorianCalendar end) {
+		ArrayList<Transaction> trans = 
+				adapt.getTransactionsForAccount(account, user);
+		ArrayList<Transaction> reportContents = new ArrayList<Transaction>();
+		for (Transaction tran : trans) {
+			if (tran.getDate().getTimeInMillis() >= start.getTimeInMillis() &&
+					tran.getDate().getTimeInMillis() <= end.getTimeInMillis()) {
+				reportContents.add(tran);
+			}
+		}
+		return new SpendingCategoryReport(reportContents);
 	}
 	
 	/** 

@@ -1,13 +1,10 @@
 package com.mikesandfriends.cashflow.activities;
 
 import java.util.ArrayList;
-import java.lang.*;
 
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
 import com.mikesandfriends.cashflow.User;
-import com.mikesandfriends.cashflow.R.id;
-import com.mikesandfriends.cashflow.R.layout;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;
@@ -16,14 +13,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 @SuppressLint("CutPasteId")
