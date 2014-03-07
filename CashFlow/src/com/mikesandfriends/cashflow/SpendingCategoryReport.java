@@ -4,6 +4,8 @@
 package com.mikesandfriends.cashflow;
 
 import android.annotation.SuppressLint;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,7 +14,8 @@ import java.util.HashMap;
  * @author Alec Lombardo
  * @version 1.0
  */
-public class SpendingCategoryReport {
+public class SpendingCategoryReport implements Serializable {
+	private static final long serialVersionUID = 1L;
 	public int[] categorySpending;
 	
 	/**

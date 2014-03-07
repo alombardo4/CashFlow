@@ -92,4 +92,9 @@ public class Transaction {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	public String toString() {
+		return name + " " + amount + " " + category + " "
+				+ date.getTimeInMillis();
+	}
 }

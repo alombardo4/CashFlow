@@ -50,6 +50,14 @@
             android:name="com.mikesandfriends.cashflow.activities.MyAccountActivity"
             android:label="@string/title_activity_my_account" >
         </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.activities.SpendingCategoryReportActivity"
+            android:label="@string/title_activity_spending_category_report" >
+        </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.activities.SpendingCategoryActivity"
+            android:label="@string/title_activity_spending_category" >
+        </activity>
     </application>
 
 </manifest>

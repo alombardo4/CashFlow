@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,11 +58,10 @@ public class AccountActivity extends Activity {
 		accountsList.setAdapter(arrayAdapter);
 		
 		ListView listview = (ListView) findViewById(R.id.accountslist);
-		listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
-		{
-		@Override
-		public void onItemClick(AdapterView<?> parent, View  view, int position, long id) 
-		        {
+		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View  view, int position,
+				long id) {
 					Account account = items.get(position);
 					String indexTag = account.getName();
 					Intent i = new Intent(getBaseContext(),MyAccountActivity.class);
@@ -70,19 +70,39 @@ public class AccountActivity extends Activity {
 					b.putSerializable("user", user);
 					i.putExtras(b);//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
 					startActivity(i);
-		         }
+		 	}
 		 });
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		createMenu(menu);
 		// Inflate the menu; this adds items to the action bar if it is present.
 		return true;
 	}
 	
-	public void onItemClick(){
-		
-		
+	private void createMenu(Menu menu) {
+		menu.add(0, 0, 1, "Spending Category Report").
+		setIcon(R.drawable.ic_action_spendingcategoryreport).
+		setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == 0) {
+			Intent i = new Intent(getBaseContext(),
+					SpendingCategoryReportActivity.class);
+			Bundle b = new Bundle();
+			b.putSerializable("user", user);
+			i.putExtras(b);
+			startActivity(i);
+		}
+		return true;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		//Intentionally does nothing to prevent accidental logout
 	}
 
 }

@@ -159,13 +159,17 @@ public class UserDataHandler {
 	}
 	
 	public SpendingCategoryReport generateSpendingCategoryReport(User user,
-			Account account, GregorianCalendar start, GregorianCalendar end) {
-		ArrayList<Transaction> trans = 
-				adapt.getTransactionsForAccount(account, user);
+			GregorianCalendar start, GregorianCalendar end) {
+		ArrayList<Transaction> trans = new ArrayList<Transaction>();
+		for (Account account : adapt.getAccountsForUser(user)) {
+			trans.addAll(adapt.getTransactionsForAccount(account, user));
+		}
 		ArrayList<Transaction> reportContents = new ArrayList<Transaction>();
 		for (Transaction tran : trans) {
-			if (tran.getDate().getTimeInMillis() >= start.getTimeInMillis() &&
-					tran.getDate().getTimeInMillis() <= end.getTimeInMillis()) {
+			if (((start.getTimeInMillis() -
+					tran.getDate().getTimeInMillis() <= 0)
+					&& (end.getTimeInMillis() - 
+							tran.getDate().getTimeInMillis()) >= 0)) {
 				reportContents.add(tran);
 			}
 		}
