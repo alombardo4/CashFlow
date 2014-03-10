@@ -21,27 +21,42 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int ic_action_spendingcategoryreport=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int accountBalance=0x7f080005;
-        public static final int accountname=0x7f08000a;
+        public static final int SpendingScoller=0x7f080015;
+        public static final int TransactionScroller=0x7f080005;
+        public static final int accountBalance=0x7f080006;
+        public static final int accountname=0x7f08000d;
         public static final int accountslist=0x7f080001;
-        public static final int action_settings=0x7f080011;
-        public static final int addButton=0x7f080006;
-        public static final int addthisaccount=0x7f08000b;
-        public static final int description=0x7f080009;
-        public static final int iconview=0x7f08000e;
-        public static final int loginbutton=0x7f08000f;
+        public static final int action_settings=0x7f08001f;
+        public static final int addButton=0x7f08000b;
+        public static final int addthisaccount=0x7f08000e;
+        public static final int categoryspinner=0x7f08000a;
+        public static final int clothingcategory=0x7f080013;
+        public static final int description=0x7f080007;
+        public static final int enddate=0x7f080019;
+        public static final int enddatetext=0x7f080018;
+        public static final int entertainmentcategory=0x7f080012;
+        public static final int foodcategory=0x7f080010;
+        public static final int generatespendingreport=0x7f08001a;
+        public static final int iconview=0x7f08001c;
+        public static final int loginbutton=0x7f08001d;
         public static final int loginscreenloginbutton=0x7f080004;
-        public static final int minusButton=0x7f080008;
+        public static final int minusButton=0x7f08000c;
         public static final int newaccount=0x7f080000;
         public static final int passwordtext=0x7f080002;
-        public static final int registerbutton=0x7f080010;
-        public static final int registerscreenregisterbutton=0x7f08000c;
-        public static final int transactionAmount=0x7f080007;
+        public static final int registerbutton=0x7f08001e;
+        public static final int registerscreenregisterbutton=0x7f08000f;
+        public static final int rentcategory=0x7f080011;
+        public static final int startdate=0x7f080017;
+        public static final int startdatetext=0x7f080016;
+        public static final int totalcategory=0x7f080014;
+        public static final int transactionAmount=0x7f080008;
+        public static final int transactiondate=0x7f080009;
         public static final int usernametext=0x7f080003;
-        public static final int welcometext=0x7f08000d;
+        public static final int welcometext=0x7f08001b;
     }
     public static final class layout {
         public static final int activity_account=0x7f030000;
@@ -50,7 +65,9 @@ public final class R {
         public static final int activity_my_account=0x7f030003;
         public static final int activity_new_account=0x7f030004;
         public static final int activity_register=0x7f030005;
-        public static final int activity_welcome=0x7f030006;
+        public static final int activity_spending_category=0x7f030006;
+        public static final int activity_spending_category_report=0x7f030007;
+        public static final int activity_welcome=0x7f030008;
     }
     public static final class menu {
         public static final int account=0x7f070000;
@@ -59,8 +76,10 @@ public final class R {
         public static final int my_account=0x7f070003;
         public static final int new_account=0x7f070004;
         public static final int register=0x7f070005;
-        public static final int transaction=0x7f070006;
-        public static final int welcome=0x7f070007;
+        public static final int spending_category=0x7f070006;
+        public static final int spending_category_report=0x7f070007;
+        public static final int transaction=0x7f070008;
+        public static final int welcome=0x7f070009;
     }
     public static final class string {
         public static final int AccountName=0x7f050012;
@@ -73,6 +92,9 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int appicon=0x7f050005;
         public static final int description=0x7f05001b;
+        public static final int empty=0x7f050021;
+        public static final int enddate=0x7f05001e;
+        public static final int generatespending=0x7f05001f;
         public static final int hello_world=0x7f050002;
         public static final int login=0x7f050003;
         public static final int minus=0x7f05001a;
@@ -80,6 +102,7 @@ public final class R {
         public static final int password=0x7f050009;
         public static final int plus=0x7f050019;
         public static final int register=0x7f050006;
+        public static final int startdate=0x7f05001d;
         public static final int success=0x7f05000b;
         public static final int title_activity_account=0x7f050010;
         public static final int title_activity_login=0x7f050007;
@@ -87,6 +110,8 @@ public final class R {
         public static final int title_activity_my_account=0x7f050015;
         public static final int title_activity_new_account=0x7f05000e;
         public static final int title_activity_register=0x7f05000c;
+        public static final int title_activity_spending_category=0x7f050020;
+        public static final int title_activity_spending_category_report=0x7f05001c;
         public static final int title_activity_transaction=0x7f050014;
         public static final int transAmount=0x7f050018;
         public static final int username=0x7f050008;

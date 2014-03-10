@@ -29,5 +29,11 @@
     <string name="plus">+</string>
     <string name="minus">-</string>
     <string name="description">description</string>
+    <string name="title_activity_spending_category_report">SpendingCategoryReportActivity</string>
+    <string name="startdate">Pick Start Date</string>
+    <string name="enddate">Pick End Date</string>
+    <string name="generatespending">Generate Report</string>
+    <string name="title_activity_spending_category">SpendingCategoryActivity</string>
+    <string name="empty"> </string>
 
 </resources>

@@ -2,12 +2,10 @@ package com.mikesandfriends.cashflow.activities;
 
 import com.mikesandfriends.cashflow.R;
 import com.mikesandfriends.cashflow.User;
-import com.mikesandfriends.cashflow.R.id;
-import com.mikesandfriends.cashflow.R.layout;
-import com.mikesandfriends.cashflow.R.menu;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +23,7 @@ import android.widget.Toast;
 * @version 1.0
 *
 */
+@SuppressLint("DefaultLocale")
 public class RegisterActivity extends Activity {
 
 	

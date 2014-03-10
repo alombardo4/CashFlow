@@ -1,67 +1,88 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/TransactionScroller"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MyAccountActivity" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/accountBalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:inputType="none" 
-        android:text="@string/accountBalance"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context=".MyAccountActivity" >
 
-    <Button
-        android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/accountBalance"
-        android:layout_below="@+id/transactionAmount"
-        android:layout_marginTop="37dp"
-        android:text="@string/plus" />
+        <TextView
+            android:id="@+id/accountBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:ems="10"
+            android:inputType="none"
+            android:text="@string/accountBalance" />
 
-    <Button
-        android:id="@+id/minusButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/addButton"
-        android:layout_alignBottom="@+id/addButton"
-        android:layout_alignRight="@+id/accountBalance"
-        android:textSize = "25sp"
-        android:text="@string/minus" />
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/accountBalance"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:background="#d3d3d3"
+            android:ems="10"
+            android:hint="@string/description" />
 
-    <EditText
-        android:id="@+id/transactionAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/accountBalance"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="87dp"
-        android:background="#d3d3d3"
-        android:ems="10"
-        android:hint="@string/transAmount"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/transactionAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/description"
+            android:layout_below="@+id/description"
+            android:layout_marginTop="15dp"
+            android:background="#d3d3d3"
+            android:ems="10"
+            android:hint="@string/transAmount"
+            android:inputType="number" >
 
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/transactionAmount"
-        android:layout_alignLeft="@+id/transactionAmount"
-        android:background="#d3d3d3"
-        android:layout_marginBottom="32dp"
-        android:hint="@string/description"
-        android:ems="10" >
+            <requestFocus />
+        </EditText>
 
-        <requestFocus />
-    </EditText>
+        <DatePicker
+            android:id="@+id/transactiondate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transactionAmount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:calendarViewShown="false" />
 
-</RelativeLayout>
+        <Spinner
+            android:id="@+id/categoryspinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transactiondate"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/transactiondate"
+            android:layout_below="@+id/categoryspinner"
+            android:text="@string/plus" />
+
+        <Button
+            android:id="@+id/minusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/transactiondate"
+            android:layout_below="@+id/categoryspinner"
+            android:text="@string/minus"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+</ScrollView>

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
 import com.mikesandfriends.cashflow.User;
-import com.mikesandfriends.cashflow.R.id;
-import com.mikesandfriends.cashflow.R.layout;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;

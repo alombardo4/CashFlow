@@ -1,8 +1,10 @@
 package com.mikesandfriends.cashflow.database;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 import com.mikesandfriends.cashflow.Account;
+import com.mikesandfriends.cashflow.SpendingCategory;
 import com.mikesandfriends.cashflow.Transaction;
 import com.mikesandfriends.cashflow.User;
 
@@ -28,6 +30,8 @@ public class CashFlowDBAdapter {
 	private static final String KEY_ACCOUNTOWNER = "owner";
 	private static final String KEY_TRANSACTIONNAME = "transName";
 	private static final String KEY_TRANSACTIONAMOUNT = "transAmount";
+	private static final String KEY_TRANSACTIONCATEGORY = "transCat";
+	private static final String KEY_TRANSACTIONDATE = "transDate";
 	private static String databaseName;
 	private static final int DATABASE_VERSION = 1;
 	private static final String TAG = "CashFlowDBAdapter";
@@ -51,7 +55,6 @@ public class CashFlowDBAdapter {
 		DBHelper = new DatabaseHelper(context);
 	}
 	
-	//opens the database
 	/**
 	* Opens the Database
 	* @return returns the address of the database location for writing
@@ -178,6 +181,11 @@ public class CashFlowDBAdapter {
 		values.put(KEY_TRANSACTIONNAME, transaction.getName());
 		values.put(KEY_TRANSACTIONAMOUNT,
 				Integer.toString(transaction.getAmount()));
+		values.put(KEY_TRANSACTIONCATEGORY,
+				transaction.getCategory().ordinal());
+		values.put(KEY_TRANSACTIONDATE,
+				transaction.getDate().getTimeInMillis());
+		
 		db.insert("transactions", null, values);	
 	}
 	
@@ -191,7 +199,8 @@ public class CashFlowDBAdapter {
 			User user) {
 		ArrayList<Transaction> trans = new ArrayList<Transaction>();
 		String[] columns = {KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER,
-				KEY_TRANSACTIONAMOUNT, KEY_TRANSACTIONNAME};
+				KEY_TRANSACTIONAMOUNT, KEY_TRANSACTIONNAME,
+				KEY_TRANSACTIONCATEGORY, KEY_TRANSACTIONDATE};
 		Cursor cursor = db.query("transactions", columns, null, null, null,
 				null, null);
 		
@@ -199,8 +208,16 @@ public class CashFlowDBAdapter {
 		for (int i = 0; i < cursor.getCount(); i++) {
 			if (cursor.getString(1).equals(user.getUsername()) &&
 					cursor.getString(0).equals(account.getName())) {
-				trans.add(new Transaction(cursor.getString(3),
-						Integer.parseInt(cursor.getString(2))));
+				GregorianCalendar date = new GregorianCalendar();
+				date.setTimeInMillis(cursor.getLong(5));
+				
+				int cat = cursor.getInt(4);
+				
+				Transaction temp = new Transaction(cursor.getString(3),
+						Integer.parseInt(cursor.getString(2)),
+						SpendingCategory.values()[cat],	date);
+				SpendingCategory.values();
+				trans.add(temp);
 			}
 			cursor.moveToNext();
 		}
@@ -239,7 +256,9 @@ public class CashFlowDBAdapter {
 			transactionsCreate = "CREATE TABLE " + "transactions" + " ("
 								+ KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME
 								+ " TEXT, " + KEY_TRANSACTIONNAME + " TEXT, "
-								+ KEY_TRANSACTIONAMOUNT + " TEXT);";
+								+ KEY_TRANSACTIONAMOUNT + " TEXT, "
+								+ KEY_TRANSACTIONCATEGORY + " INTEGER, "
+								+ KEY_TRANSACTIONDATE + " INTEGER);";
 		
 		}
 		

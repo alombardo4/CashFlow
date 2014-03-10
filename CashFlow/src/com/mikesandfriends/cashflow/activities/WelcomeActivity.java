@@ -1,9 +1,6 @@
 package com.mikesandfriends.cashflow.activities;
 
 import com.mikesandfriends.cashflow.R;
-import com.mikesandfriends.cashflow.R.id;
-import com.mikesandfriends.cashflow.R.layout;
-import com.mikesandfriends.cashflow.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
