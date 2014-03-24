@@ -1,78 +1,96 @@
 package com.mikesandfriends.cashflow;
+
 import java.io.Serializable;
 /**
- * Represents a User for login
+ * Represents a User for login.
  * @author Alec Lombardo
  * @version 1.0
  */
-public class User implements Serializable {
+public class User implements Serializable { 
+	/**
+	 * Necessary for Serialization.
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * The user's username.
+	 */
 	private String username;
+	/**
+	 * The user's password.
+	 */
 	private String password;
 	
 	/**
-	 * Main constructor
+	 * Main constructor.
 	 * @param username User's username
 	 * @param password User's plain text password
 	 */
-	public User(String username, String password) {
+	public User(final String username, final String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
 	/**
-	 * No-args constructor
+	 * No-args constructor.
 	 */
 	public User() {
 		this("", "");
 	}
 
 	/**
-	 * Gets the username
+	 * Gets the username.
 	 * @return the username
 	 */
-	public String getUsername() {
+	public final String getUsername() {
 		return username;
 	}
 
 	/**
-	 * Sets the username
+	 * Sets the username.
 	 * @param username the username to set
 	 */
-	public void setUsername(String username) {
+	public final void setUsername(final String username) {
 		this.username = username;
 	}
 
 	/**
-	 * Gets the password
+	 * Gets the password.
 	 * @return the password
 	 */
-	public String getPassword() {
+	public final String getPassword() {
 		return password;
 	}
 
 	/**
-	 * Sets the password
+	 * Sets the password.
 	 * @param password the password to set
 	 */
-	public void setPassword(String password) {
+	public final void setPassword(final String password) {
 		this.password = password;
 	}
 	
-	public boolean equals(Object other) {
-		if(this.username.equals(((User) other).getUsername())) {
-			if(this.password.equals(((User) other).getPassword())) {
-				return true;	
-			} else {
-				return false;
-			}
+	@Override
+	public final boolean equals(final Object other) {
+		boolean retVal;
+		if (other == null) {
+			retVal = false;
+			//Don't want to make this unneccesessarily wordy.
+		} else if (this.username.equals(((User) other).getUsername())) {
+			//Don't want to make this unneccesessarily wordy.
+			retVal = this.password.equals(((User) other).getPassword()); 
 		} else {
-			return false;
+			retVal = false;
 		}
-		
+		return retVal;
 	}
 	
-	public String toString(){
+	@Override
+	public final int hashCode() {
+		return username.hashCode();
+	}
+	
+	@Override
+	public final String toString() {
 		return username;
 	}
 	

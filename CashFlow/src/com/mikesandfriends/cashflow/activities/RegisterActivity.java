@@ -38,11 +38,11 @@ public class RegisterActivity extends Activity {
         getActionBar().setBackgroundDrawable(new ColorDrawable(
         		Color.parseColor("#035986")));
         
-        Button RegisterButton = (Button) findViewById(R.id.registerscreenregisterbutton);
+        Button registerButton = (Button) findViewById(R.id.registerscreenregisterbutton);
         
         lh = new UserDataHandler(getBaseContext());
         
-        RegisterButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
         	/**
         	 * Called when the user clicks on the button
         	 */
