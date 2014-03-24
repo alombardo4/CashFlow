@@ -1,6 +1,7 @@
 package com.mikesandfriends.cashflow.activities;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.mikesandfriends.cashflow.R;
 import com.mikesandfriends.cashflow.R.layout;
@@ -32,7 +33,7 @@ public class SpendingCategoryActivity extends Activity {
         SpendingCategoryReport report =
         		(SpendingCategoryReport)
         		getIntent().getExtras().getSerializable("report");
-        HashMap<Integer, Integer> map = report.getSpendingReport();
+        Map<Integer, Integer> map = report.getSpendingReport();
         
         food.setText("Food: $" + (-1 * map.get(0)));
         rent.setText("Rent: $" + (-1 * map.get(1)));

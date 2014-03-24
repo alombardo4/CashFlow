@@ -1,30 +1,35 @@
-/**
- * 
- */
 package com.mikesandfriends.cashflow;
 
 import android.annotation.SuppressLint;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Holds the information for a Spending Category Report
+ * Holds the information for a Spending Category Report.
  * @author Alec Lombardo
  * @version 1.0
  */
 public class SpendingCategoryReport implements Serializable {
+	/**
+	 * Necessary for Serialization.
+	 */
 	private static final long serialVersionUID = 1L;
-	public int[] categorySpending;
+	/**
+	 * The spending for each category.
+	 */
+	private final transient int[] categorySpending;
 	
 	/**
-	 * Builds the report upon creation
+	 * Builds the report upon creation.
 	 * @param transactions All transactions within the requested date range
 	 */
-	public SpendingCategoryReport(ArrayList<Transaction> transactions) {
+	public SpendingCategoryReport(final List<Transaction> transactions) {
 		categorySpending = new int[SpendingCategory.values().length - 1];
-		for (Transaction transaction : transactions) {
+		for (final Transaction transaction : transactions) {
 			for (int i = 0; i < SpendingCategory.values().length - 1; i++) {
 				if (transaction.getCategory().equals(
 						SpendingCategory.values()[i])) {
@@ -36,14 +41,17 @@ public class SpendingCategoryReport implements Serializable {
 	}
 	
 	/**
-	 * Gets the spending report as a hashmap
+	 * Gets the spending report as a hashmap.
 	 * @return The Hashmap with key SpendingCategory value, value amount
 	 */
 	@SuppressLint("UseSparseArrays")
-	public HashMap<Integer, Integer> getSpendingReport() {
-		HashMap<Integer, Integer> retVal = new HashMap<Integer, Integer>();
+	public final Map<Integer, Integer> getSpendingReport() {
+		final Map<Integer, Integer> retVal = //Not sure why it won't go away
+				//we do use ConcurrentHashMap
+				new ConcurrentHashMap<Integer, Integer>();
 		for (int i = 0; i < categorySpending.length; i++) {
-			retVal.put(i, categorySpending[i]);
+			final int val = categorySpending[i];
+			retVal.put(i, val);
 		}
 		return retVal;
 	}

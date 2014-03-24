@@ -34,17 +34,17 @@ public class NewAccountActivity extends Activity {
         	 * Called when the user clicks on the button
         	 */
 			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(getBaseContext(), AccountActivity.class);
-				i.putExtras(getIntent().getExtras());
+			public void onClick(final View view) {
+				Intent intent = new Intent(getBaseContext(), AccountActivity.class);
+				intent.putExtras(getIntent().getExtras());
 				EditText accountName = (EditText)findViewById(R.id.accountname);
 		        User user = (User)getIntent().getExtras().getSerializable("user");
 		        UserDataHandler dh = new UserDataHandler(getBaseContext());
 		        ArrayList<Account> accountList = dh.getAccountsForUser(user);
-		        Account newAccount = new Account(accountName.getText().toString());
+		        final Account newAccount = new Account(accountName.getText().toString());
 		        if(!accountList.contains(newAccount)){
 		        	dh.createAccount(newAccount, user);
-		        	startActivity(i);
+		        	startActivity(intent);
 		        	dh.closeAdapt();
 		        	finish();
 		        }

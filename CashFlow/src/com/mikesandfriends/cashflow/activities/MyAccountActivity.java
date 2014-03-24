@@ -94,7 +94,7 @@ public class MyAccountActivity extends Activity {
 	    			} else if (categorySpinner.getSelectedItemPosition() == 3) {
 	    				cat = SpendingCategory.ENTERTAINMENT;
 	    			}
-	    			Transaction trans = new Transaction(description.toString(),
+	    			final Transaction trans = new Transaction(description.toString(),
 	    					money, cat, day);
 	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
     			}

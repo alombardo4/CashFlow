@@ -11,134 +11,141 @@ import com.mikesandfriends.cashflow.User;
 import android.content.Context;
 
 /**
-* Handles getting all data for a user from the database
+* Handles getting all data for a user from the database.
 *
 * @author Michael Avery
+* @author Alec Lombardo
 * @version 1.0
 *
 */
 public class UserDataHandler {
-	
-	private CashFlowDBAdapter adapt;
+	/**
+	 * Holds the CashFlowDBAdapter that the UserDataHandler is abstracting.
+	 */
+	private final CashFlowDBAdapter adapt;
 	
 	/**
-	 * Login Check constructor
-	 * @param context
+	 * Login Check constructor.
+	 * @param context The context provided by the activity calling.
 	 */
-	public UserDataHandler(Context context) {
+	public UserDataHandler(final Context context) {
 		adapt = new CashFlowDBAdapter(context);
 		adapt.open();
-		User admin = new User("admin", "pass1234");
+		final User admin = new User("admin", "pass1234");
 		if (!checkLogin(admin)) {
 			add(admin);
 		}
 	}
 	
 	/**
-	 * Check to see if the username already exists
-	 * @return boolean 
+	 * Check to see if the username already exists.
+	 * @param username The username to check if is valid.
+	 * @return boolean  Whether the username is valid or not.
 	 */
-	public boolean isValidUsername(String username){
+	public final boolean isValidUsername(final String username) {
 		
 		ArrayList<User> userList = adapt.getUsers();		
-		for(User user : userList){
-			if(user.getUsername().toString().equals(username.toString()))
+		for (User user : userList) {
+			if (user.getUsername().toString().equals(username.toString())) {
 				return false;
+			}
 		}
 		return true;
 	}
 	
 
 	/** 
-	* Checks the info to the passed information
-	* @return returns boolean based on login
+	* Checks the info to the passed information.
+	* @param user The user to check if valid.
+	* @return Returns boolean based on login.
 	*/
-	public boolean checkLogin(User user) {
+	public final boolean checkLogin(final User user) {
 		ArrayList<User> users = adapt.getUsers();
 		
 		return users.contains(user);
 	}
 	
 	/**
-	 * Adds a New User
-	 * @param user
+	 * Adds a New User.
+	 * @param user The user to add.
 	 */
-	public void add(User user) {
+	public final void add(final User user) {
 		adapt.addUser(user);
 	}
 	
 	/**
-	 * Deletes the user from the database
-	 * @param user
+	 * Deletes the user from the database.
+	 * @param user The user to delete.
 	 */
-	public void delete(User user) {
+	public final void delete(final User user) {
 		adapt.deleteUser(user);
 	}
 	
 	/**
-	 * Returns the User List
-	 * @return
+	 * Returns the User List.
+	 * @return The arraylist of all users.
 	 */
-	public ArrayList<User> getUserList() {
+	public final ArrayList<User> getUserList() {
 		return adapt.getUsers();
 		
 	}
 	/**
-	 * Gets all the accounts for a user
-	 * @param user User to get accounts for
-	 * @return the accounts
+	 * Gets all the accounts for a user.
+	 * @param user User to get accounts for.
+	 * @return the accounts.
 	 */
-	public ArrayList<Account> getAccountsForUser(User user) {
+	public final ArrayList<Account> getAccountsForUser(final User user) {
 		return adapt.getAccountsForUser(user);
 	}
 	
 	/**
-	 * Creates an account for the given user
-	 * @param name Name of the account
-	 * @param user User to create the account for
+	 * Creates an account for the given user.
+	 * @param account The account.
+	 * @param user User to create the account for.
 	 */
-	public void createAccount(Account account, User user) {
+	public final void createAccount(final Account account, final User user) {
 		adapt.addAccountToUser(account.getName(), user);
 	}
 	
 	/**
-	 * Deletes the account for the given user
-	 * @param name Name of the account to delete
-	 * @param user User that owns the account
+	 * Deletes the account for the given user.
+	 * @param name Name of the account to delete.
+	 * @param user User that owns the account.
 	 */
-	public void deleteAccount(String name, User user) {
+	public final void deleteAccount(final String name, final User user) {
 		adapt.deleteAccount(name, user);
 	}
 	
 	/**
-	 * Adds a transaction to an account
-	 * @param transaction Transaction to add
-	 * @param account Account to own transaction
-	 * @param user User that owns account
+	 * Adds a transaction to an account.
+	 * @param transaction Transaction to add.
+	 * @param account Account to own transaction.
+	 * @param user User that owns account.
 	 */
-	public void addTransactiontoAccount(Transaction transaction,
-			Account account, User user) {
+	public final void addTransactiontoAccount(final Transaction transaction,
+			final Account account, final User user) {
 		adapt.addTransactionToAccount(transaction, account, user);
 	}
 	
 	/**
-	 * Gets all transactions for a given account
-	 * @param account Account owning transactions
-	 * @param user User owning account
-	 * @return all transactions for an account
+	 * Gets all transactions for a given account.
+	 * @param account Account owning transactions.
+	 * @param user User owning account.
+	 * @return all transactions for an account.
 	 */
-	public ArrayList<Transaction> getTransactionsForAccount(Account account,
-			User user) {
+	public final ArrayList<Transaction> getTransactionsForAccount(
+			final Account account, final User user) {
 		return adapt.getTransactionsForAccount(account, user);
 	}
 	
 	/**
-	 * Computes the balance for a given account
-	 * @param account Account to calculate for
-	 * @param user Use who owns the account
+	 * Computes the balance for a given account.
+	 * @param account Account to calculate for.
+	 * @param user Use who owns the account.
 	 * @return balance
 	 */
-	public int getBalanceForAccount(Account account, User user) {
+	public final int getBalanceForAccount(final Account account,
+			final User user) {
 		ArrayList<Transaction> trans = getTransactionsForAccount(account, user);
 		int balance = 0;
 		for (Transaction transaction : trans) {
@@ -148,28 +155,37 @@ public class UserDataHandler {
 	}
 	
 	/**
-	 * Deletes a transaction
-	 * @param transaction Transaction to delete
-	 * @param account Account owning the transaction
-	 * @param user User who owns the account
+	 * Deletes a transaction.
+	 * @param transaction Transaction to delete.
+	 * @param account Account owning the transaction.
+	 * @param user User who owns the account.
 	 */
-	public void deleteTransaction(Transaction transaction, Account account,
-			User user) {
+	public final void deleteTransaction(final Transaction transaction,
+			final Account account, final User user) {
 		adapt.deleteTransaction(transaction, account, user);
 	}
 	
-	public SpendingCategoryReport generateSpendingCategoryReport(User user,
-			GregorianCalendar start, GregorianCalendar end) {
-		ArrayList<Transaction> trans = new ArrayList<Transaction>();
-		for (Account account : adapt.getAccountsForUser(user)) {
+	/**
+	 * Generates the spending category report.
+	 * @param user The user owning the report.
+	 * @param start The start date for the report.
+	 * @param end The end date for the report.
+	 * @return The final spending category report.
+	 */
+	public final SpendingCategoryReport generateSpendingCategoryReport(
+			final User user, final GregorianCalendar start,
+			final GregorianCalendar end) {
+		final ArrayList<Transaction> trans = new ArrayList<Transaction>();
+		for (final Account account : adapt.getAccountsForUser(user)) {
 			trans.addAll(adapt.getTransactionsForAccount(account, user));
 		}
-		ArrayList<Transaction> reportContents = new ArrayList<Transaction>();
-		for (Transaction tran : trans) {
-			if (((start.getTimeInMillis() -
-					tran.getDate().getTimeInMillis() <= 0)
-					&& (end.getTimeInMillis() - 
-							tran.getDate().getTimeInMillis()) >= 0)) {
+		final ArrayList<Transaction> reportContents =
+				new ArrayList<Transaction>();
+		for (final Transaction tran : trans) {
+			if (((start.getTimeInMillis()
+					- tran.getDate().getTimeInMillis() <= 0)
+					&& (end.getTimeInMillis()
+					-  tran.getDate().getTimeInMillis()) >= 0)) {
 				reportContents.add(tran);
 			}
 		}
@@ -177,11 +193,9 @@ public class UserDataHandler {
 	}
 	
 	/** 
-	* Closes the adapter
-	* @param none
-	* @return none
+	* Closes the adapter.
 	*/
-	public void closeAdapt() {
+	public final void closeAdapt() {
 		adapt.close();
 	
 	}
