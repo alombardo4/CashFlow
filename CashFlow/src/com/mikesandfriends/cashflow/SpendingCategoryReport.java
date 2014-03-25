@@ -15,24 +15,30 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class SpendingCategoryReport implements Serializable {
 	/**
-	 * Necessary for Serialization.
+	 * The category of the transaction.
+	 * 0 = income
+	 * 1 = food
+	 * 2 = clothing
+	 * 3 = entertainment
+	 * 4 = rent
 	 */
+	/**
+	 * Necessary for Serialization.
+	 */	
 	private static final long serialVersionUID = 1L;
 	/**
 	 * The spending for each category.
 	 */
-	private final transient int[] categorySpending;
+	private int[] categorySpending = {0, 0, 0, 0, 0};
 	
 	/**
 	 * Builds the report upon creation.
 	 * @param transactions All transactions within the requested date range
 	 */
-	public SpendingCategoryReport(final List<Transaction> transactions) {
-		categorySpending = new int[SpendingCategory.values().length - 1];
-		for (final Transaction transaction : transactions) {
-			for (int i = 0; i < SpendingCategory.values().length - 1; i++) {
-				if (transaction.getCategory().equals(
-						SpendingCategory.values()[i])) {
+	public SpendingCategoryReport(List<Transaction> transactions) {
+		for (Transaction transaction : transactions) {
+			for (int i = 1; i < 5; i++) {
+				if (transaction.getCategory() == i) {
 					categorySpending[i] += -1 * transaction.getAmount();
 					
 				}
@@ -49,7 +55,7 @@ public class SpendingCategoryReport implements Serializable {
 		final Map<Integer, Integer> retVal = //Not sure why it won't go away
 				//we do use ConcurrentHashMap
 				new ConcurrentHashMap<Integer, Integer>();
-		for (int i = 0; i < categorySpending.length; i++) {
+		for (int i = 1; i < categorySpending.length; i++) {
 			final int val = categorySpending[i];
 			retVal.put(i, val);
 		}

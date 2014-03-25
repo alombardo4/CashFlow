@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import com.mikesandfriends.cashflow.Account;
-import com.mikesandfriends.cashflow.SpendingCategory;
 import com.mikesandfriends.cashflow.Transaction;
 import com.mikesandfriends.cashflow.User;
 
@@ -189,7 +188,7 @@ public class CashFlowDBAdapter {
 		values.put(KEY_TRANSAMOUNT,
 				Integer.toString(transaction.getAmount()));
 		values.put(KEY_TRANSCAT,
-				transaction.getCategory().ordinal());
+				transaction.getCategory());
 		values.put(KEY_TRANSDATE,
 				transaction.getDate().getTimeInMillis());
 		
@@ -222,8 +221,7 @@ public class CashFlowDBAdapter {
 				
 				Transaction temp = new Transaction(cursor.getString(3),
 						Integer.parseInt(cursor.getString(2)),
-						SpendingCategory.values()[cat],	date);
-				SpendingCategory.values();
+						cat, date);
 				trans.add(temp);
 			}
 			cursor.moveToNext();

@@ -35,11 +35,11 @@ public class SpendingCategoryActivity extends Activity {
         		getIntent().getExtras().getSerializable("report");
         Map<Integer, Integer> map = report.getSpendingReport();
         
-        food.setText("Food: $" + (-1 * map.get(0)));
-        rent.setText("Rent: $" + (-1 * map.get(1)));
+        food.setText("Food: $" + (-1 * map.get(1)));
+        rent.setText("Rent: $" + (-1 * map.get(4)));
         clothing.setText("Clothing: $" + (-1 * map.get(2)));
         entertainment.setText("Entertainment: $" + (-1 * map.get(3)));
-        int tot = map.get(0) + map.get(1) + map.get(2) + map.get(3);
+        int tot = map.get(1) + map.get(2) + map.get(3) + map.get(4);
         tot *= -1;
         total.setText("Total: $" + tot);
 	}

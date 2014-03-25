@@ -175,21 +175,22 @@ public class UserDataHandler {
 	public final SpendingCategoryReport generateSpendingCategoryReport(
 			final User user, final GregorianCalendar start,
 			final GregorianCalendar end) {
+		final ArrayList<Account> accounts = adapt.getAccountsForUser(user);
 		final ArrayList<Transaction> trans = new ArrayList<Transaction>();
-		for (final Account account : adapt.getAccountsForUser(user)) {
-			trans.addAll(adapt.getTransactionsForAccount(account, user));
-		}
-		final ArrayList<Transaction> reportContents =
-				new ArrayList<Transaction>();
-		for (final Transaction tran : trans) {
-			if (((start.getTimeInMillis()
-					- tran.getDate().getTimeInMillis() <= 0)
-					&& (end.getTimeInMillis()
-					-  tran.getDate().getTimeInMillis()) >= 0)) {
-				reportContents.add(tran);
+		for (final Account account : accounts) {
+			final ArrayList<Transaction> temp =
+					adapt.getTransactionsForAccount(account, user);
+			for (final Transaction tran : temp) {
+				if (((start.getTimeInMillis()
+						- tran.getDate().getTimeInMillis() <= 0)
+						&& (end.getTimeInMillis()
+						-  tran.getDate().getTimeInMillis()) >= 0)) {
+					trans.add(tran);
+				}	
 			}
 		}
-		return new SpendingCategoryReport(reportContents);
+		final SpendingCategoryReport report = new SpendingCategoryReport(trans);
+		return report;
 	}
 	
 	/** 

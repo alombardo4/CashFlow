@@ -18,8 +18,13 @@ public class Transaction {
 	private int amount;
 	/**
 	 * The category of the transaction.
+	 * 0 = income
+	 * 1 = food
+	 * 2 = clothing
+	 * 3 = entertainment
+	 * 4 = rent
 	 */
-	private SpendingCategory category;
+	private int category;
 	/**
 	 * The date of the transaction.
 	 */
@@ -33,7 +38,7 @@ public class Transaction {
 	 * @param date Date transaction entered
 	 */
 	public Transaction(final String name, final int amount,
-			final SpendingCategory category, final GregorianCalendar date) {
+			final int category, final GregorianCalendar date) {
 		super();
 		this.name = name;
 		this.amount = amount;
@@ -45,7 +50,7 @@ public class Transaction {
 	 * Gets the spending category.
 	 * @return the category
 	 */
-	public final SpendingCategory getCategory() {
+	public final int getCategory() {
 		return category;
 	}
 
@@ -53,7 +58,7 @@ public class Transaction {
 	 * Sets the spending category.
 	 * @param category the category to set
 	 */
-	public final void setCategory(final SpendingCategory category) {
+	public final void setCategory(final int category) {
 		this.category = category;
 	}
 

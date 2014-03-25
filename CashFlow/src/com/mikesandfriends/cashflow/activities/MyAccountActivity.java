@@ -4,7 +4,6 @@ import java.util.GregorianCalendar;
 
 import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
-import com.mikesandfriends.cashflow.SpendingCategory;
 import com.mikesandfriends.cashflow.Transaction;
 import com.mikesandfriends.cashflow.User;
 import com.mikesandfriends.cashflow.database.UserDataHandler;
@@ -64,11 +63,10 @@ public class MyAccountActivity extends Activity {
 		balanceOnScreen = (TextView) findViewById(R.id.accountBalance);
 		balanceOnScreen.setText("Balance: $" + balance);
         
-        
         addButton.setOnClickListener(new View.OnClickListener() {
         	@Override
     		public void onClick(View v) {
-    			int balance = udl.getBalanceForAccount(new Account(ids), user);
+        		int balance = udl.getBalanceForAccount(new Account(ids), user);
     			EditText transAmount = (EditText)
     					findViewById(R.id.transactionAmount);
     			EditText description = (EditText)
@@ -84,16 +82,7 @@ public class MyAccountActivity extends Activity {
 	    					date.getDayOfMonth());
 	    			day.set(GregorianCalendar.MONTH, date.getMonth());
 	    			day.set(GregorianCalendar.YEAR, date.getYear());
-	    			SpendingCategory cat = SpendingCategory.FOOD;
-	    			if (categorySpinner.getSelectedItemPosition() == 0) {
-	    				cat = SpendingCategory.FOOD;
-	    			} else if (categorySpinner.getSelectedItemPosition() == 1) {
-	    				cat = SpendingCategory.RENT;
-	    			} else if (categorySpinner.getSelectedItemPosition() == 2) {
-	    				cat = SpendingCategory.CLOTHING;
-	    			} else if (categorySpinner.getSelectedItemPosition() == 3) {
-	    				cat = SpendingCategory.ENTERTAINMENT;
-	    			}
+	    			int cat = 0;
 	    			final Transaction trans = new Transaction(description.toString(),
 	    					money, cat, day);
 	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
@@ -122,7 +111,8 @@ public class MyAccountActivity extends Activity {
     			int balance = udl.getBalanceForAccount(new Account(ids), user);
     			EditText transAmount = (EditText) findViewById(R.id.transactionAmount);
     			EditText description = (EditText) findViewById(R.id.description);
-    			if(description.getText().toString().length() >= 1 && transAmount.getText().toString().length() >= 1){
+    			if(description.getText().toString().length() >= 1
+    					&& transAmount.getText().toString().length() >= 1){
 	
 	    			int money = Integer.parseInt(transAmount.getText().toString());
 	    			int afterTrans = balance - money;
@@ -133,7 +123,16 @@ public class MyAccountActivity extends Activity {
 	    					date.getDayOfMonth());
 	    			day.set(GregorianCalendar.MONTH, date.getMonth());
 	    			day.set(GregorianCalendar.YEAR, date.getYear());
-	    			SpendingCategory cat = SpendingCategory.INCOME;
+	    			int cat = 0;
+	    			if (categorySpinner.getSelectedItemPosition() == 0) {
+	    				cat = 1;
+	    			} else if (categorySpinner.getSelectedItemId() == 1) {
+	    				cat = 4;
+	    			} else if (categorySpinner.getSelectedItemId() == 2) {
+	    				cat =2;
+	    			} else if (categorySpinner.getSelectedItemId() == 3) {
+	    				cat = 3;
+	    			}
 	    			Transaction trans = new Transaction(description.toString(),
 	    					money, cat, day);
 	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
