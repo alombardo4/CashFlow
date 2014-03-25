@@ -50,7 +50,7 @@ public class CashFlowDBAdapter {
 	private SQLiteDatabase db;
 	
 	/**
-	* Adapter Constructor
+	* Adapter Constructor.
 	* 
 	* @param context access context
 	*/
@@ -167,7 +167,7 @@ public class CashFlowDBAdapter {
 	 * @param user User who owns the account
 	 */
 	public final void deleteAccount(final String name, final User user) {
-		String[] whereArgs = {name, user.getUsername()};
+		final String[] whereArgs = {name, user.getUsername()};
 		db.delete("accounts", KEY_ACCOUNTNAME + "=? AND "
 				+ KEY_ACCOUNTOWNER + "=?", whereArgs);
 	}

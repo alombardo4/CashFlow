@@ -35,7 +35,7 @@ public class SpendingCategoryReport implements Serializable {
 	 * Builds the report upon creation.
 	 * @param transactions All transactions within the requested date range
 	 */
-	public SpendingCategoryReport(List<Transaction> transactions) {
+	public SpendingCategoryReport(final List<Transaction> transactions) {
 		for (Transaction transaction : transactions) {
 			for (int i = 1; i < 5; i++) {
 				if (transaction.getCategory() == i) {
