@@ -23,28 +23,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MyAccountActivity extends Activity {
-	
-	private String ids;
-	private User user;
-	private UserDataHandler udl;
-	private TextView balanceOnScreen;
-	private DatePicker date;
-	private Spinner categorySpinner;
-	private final String[] CATEGORIES = {"Food", "Rent", "Clothing",
-			"Entertainment"};
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_my_account);
-		
-		ids = (String) getIntent().getSerializableExtra("accountName");
+    
+    private String ids;
+    private User user;
+    private UserDataHandler udl;
+    private TextView balanceOnScreen;
+    private DatePicker date;
+    private Spinner categorySpinner;
+    private final String[] CATEGORIES = {"Food", "Rent", "Clothing",
+            "Entertainment"};
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_account);
+        
+        ids = (String) getIntent().getSerializableExtra("accountName");
 
-		
-		
-		
-		getActionBar().setTitle(ids);
+        
+        
+        
+        getActionBar().setTitle(ids);
         getActionBar().setBackgroundDrawable(new ColorDrawable(
-        		Color.parseColor("#035986")));
+                Color.parseColor("#035986")));
         
         Button addButton = (Button) findViewById(R.id.addButton);
         Button minusButton = (Button) findViewById(R.id.minusButton);
@@ -60,112 +60,111 @@ public class MyAccountActivity extends Activity {
         
         //Display the Balance on Create
         int balance = udl.getBalanceForAccount(new Account(ids), user);
-		balanceOnScreen = (TextView) findViewById(R.id.accountBalance);
-		balanceOnScreen.setText("Balance: $" + balance);
+        balanceOnScreen = (TextView) findViewById(R.id.accountBalance);
+        balanceOnScreen.setText("Balance: $" + balance);
         
         addButton.setOnClickListener(new View.OnClickListener() {
-        	@Override
-    		public void onClick(View v) {
-        		int balance = udl.getBalanceForAccount(new Account(ids), user);
-    			EditText transAmount = (EditText)
-    					findViewById(R.id.transactionAmount);
-    			EditText description = (EditText)
-    					findViewById(R.id.description);
-    			if(description.getText().toString().length() >= 1 &&
-    					transAmount.getText().toString().length() >= 1){
-	    			int money =
-	    					Integer.parseInt(transAmount.getText().toString());
-	    			int afterTrans = balance + money;
-	    			balanceOnScreen.setText("Balance: $" + afterTrans);
-	    			GregorianCalendar day = new GregorianCalendar();
-	    			day.set(GregorianCalendar.DAY_OF_MONTH,
-	    					date.getDayOfMonth());
-	    			day.set(GregorianCalendar.MONTH, date.getMonth());
-	    			day.set(GregorianCalendar.YEAR, date.getYear());
-	    			int cat = 0;
-	    			final Transaction trans = new Transaction(description.toString(),
-	    					money, cat, day);
-	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
-    			}
-    			else{
-    				CharSequence text;
-    				if(description.getText().toString().length() < 1){
-    					text = "Description must be at least 1 character in length";
-    				}
-    				else{
-    					text = "Amount must be at least 1 character in length";
-    				}
-			       	int duration = Toast.LENGTH_SHORT;
-		        	description.setText("");
-		        	transAmount.setText("");
-					Toast.makeText(getBaseContext(), text, duration).show();
-    			}
-        	}
-    			
+            @Override
+            public void onClick(View v) {
+                int balance = udl.getBalanceForAccount(new Account(ids), user);
+                EditText transAmount = (EditText)
+                        findViewById(R.id.transactionAmount);
+                EditText description = (EditText)
+                        findViewById(R.id.description);
+                if(description.getText().toString().length() >= 1 &&
+                        transAmount.getText().toString().length() >= 1){
+                    int money =
+                            Integer.parseInt(transAmount.getText().toString());
+                    int afterTrans = balance + money;
+                    balanceOnScreen.setText("Balance: $" + afterTrans);
+                    GregorianCalendar day = new GregorianCalendar();
+                    day.set(GregorianCalendar.DAY_OF_MONTH,
+                            date.getDayOfMonth());
+                    day.set(GregorianCalendar.MONTH, date.getMonth());
+                    day.set(GregorianCalendar.YEAR, date.getYear());
+                    int cat = 0;
+                    final Transaction trans = new Transaction(description.toString(),
+                            money, cat, day);
+                    udl.addTransactiontoAccount(trans, new Account(ids), user);
+                }
+                else{
+                    CharSequence text;
+                    if(description.getText().toString().length() < 1){
+                        text = "Description must be at least 1 character in length";
+                    }
+                    else{
+                        text = "Amount must be at least 1 character in length";
+                    }
+                       int duration = Toast.LENGTH_SHORT;
+                    description.setText("");
+                    transAmount.setText("");
+                    Toast.makeText(getBaseContext(), text, duration).show();
+                }
+            }
+
         });
-        
+
 
         minusButton.setOnClickListener(new View.OnClickListener() {
-        	@Override
-    		public void onClick(View v) {
-    			int balance = udl.getBalanceForAccount(new Account(ids), user);
-    			EditText transAmount = (EditText) findViewById(R.id.transactionAmount);
-    			EditText description = (EditText) findViewById(R.id.description);
-    			if(description.getText().toString().length() >= 1
-    					&& transAmount.getText().toString().length() >= 1){
-	
-	    			int money = Integer.parseInt(transAmount.getText().toString());
-	    			int afterTrans = balance - money;
-	    			balanceOnScreen.setText("Balance: $" + afterTrans);
-	    			money = money - 2*money;
-	    			GregorianCalendar day = new GregorianCalendar();
-	    			day.set(GregorianCalendar.DAY_OF_MONTH,
-	    					date.getDayOfMonth());
-	    			day.set(GregorianCalendar.MONTH, date.getMonth());
-	    			day.set(GregorianCalendar.YEAR, date.getYear());
-	    			int cat = 0;
-	    			if (categorySpinner.getSelectedItemPosition() == 0) {
-	    				cat = 1;
-	    			} else if (categorySpinner.getSelectedItemId() == 1) {
-	    				cat = 4;
-	    			} else if (categorySpinner.getSelectedItemId() == 2) {
-	    				cat =2;
-	    			} else if (categorySpinner.getSelectedItemId() == 3) {
-	    				cat = 3;
-	    			}
-	    			Transaction trans = new Transaction(description.toString(),
-	    					money, cat, day);
-	    			udl.addTransactiontoAccount(trans, new Account(ids), user);
-    			}
-    			else{
-    				CharSequence text;
-    				if(description.getText().toString().length() < 1){
-    					text = "Description must be at least 1 character in length";
-    				}
-    				else{
-    					text = "Amount must be at least 1 character in length";
-    				}
-			       	int duration = Toast.LENGTH_SHORT;
-		        	description.setText("");
-		        	transAmount.setText("");
-					Toast.makeText(getBaseContext(), text, duration).show();
-    			}
-        	}
-        });
-        
-        
-        
-        
-		
-	}
+            @Override
+            public void onClick(View v) {
+                int balance = udl.getBalanceForAccount(new Account(ids), user);
+                EditText transAmount = (EditText)
+                    findViewById(R.id.transactionAmount);
+                EditText description = (EditText)
+                    findViewById(R.id.description);
+                if(description.getText().toString().length() >= 1
+                        && transAmount.getText().toString().length() >= 1){
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.my_account, menu);
-		return true;
-	}
-	
-	
+                    int money = Integer.parseInt(transAmount
+                        .getText().toString());
+                    int afterTrans = balance - money;
+                    balanceOnScreen.setText("Balance: $" + afterTrans);
+                    money = money - 2 * money;
+                    GregorianCalendar day = new GregorianCalendar();
+                    day.set(GregorianCalendar.DAY_OF_MONTH,
+                            date.getDayOfMonth());
+                    day.set(GregorianCalendar.MONTH, date.getMonth());
+                    day.set(GregorianCalendar.YEAR, date.getYear());
+                    int cat = 0;
+                    if (categorySpinner.getSelectedItemPosition() == 0) {
+                        cat = 1;
+                    } else if (categorySpinner.getSelectedItemId() == 1) {
+                        cat = 4;
+                    } else if (categorySpinner.getSelectedItemId() == 2) {
+                        cat =2;
+                    } else if (categorySpinner.getSelectedItemId() == 3) {
+                        cat = 3;
+                    }
+                    Transaction trans = new Transaction(description.toString(),
+                            money, cat, day);
+                    udl.addTransactiontoAccount(trans, new Account(ids), user);
+                }
+                else {
+                    CharSequence text;
+                    if(description.getText().toString().length() < 1){
+                        text = "Description must be at"
+                               + " least 1 character in length";
+                }
+                    else {
+                        text = "Amount must be at least 1 character in length";
+                    }
+                       int duration = Toast.LENGTH_SHORT;
+                    description.setText("");
+                    transAmount.setText("");
+                    Toast.makeText(getBaseContext(), text, duration).show();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my_account, menu);
+        return true;
+    }
+
 
 }
