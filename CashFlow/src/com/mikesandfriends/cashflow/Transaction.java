@@ -8,111 +8,111 @@ import java.util.GregorianCalendar;
  * @version 1.0
  */
 public class Transaction {
-	/**
-	 * The name of the transaction.
-	 */
-	private String name;
-	/**
-	 * The amount of the transaction.
-	 */
-	private int amount;
-	/**
-	 * The category of the transaction.
-	 * 0 = income
-	 * 1 = food
-	 * 2 = clothing
-	 * 3 = entertainment
-	 * 4 = rent
-	 */
-	private int category;
-	/**
-	 * The date of the transaction.
-	 */
-	private GregorianCalendar date;
-	
-	/**
-	 * Transaction constructor.
-	 * @param name Name of the transaction
-	 * @param amount Amount of the transaction (positive or negative)
-	 * @param category Spending category of the transaction
-	 * @param date Date transaction entered
-	 */
-	public Transaction(final String name, final int amount,
-			final int category, final GregorianCalendar date) {
-		super();
-		this.name = name;
-		this.amount = amount;
-		this.category = category;
-		this.date = date;
-	}
+    /**
+     * The name of the transaction.
+     */
+    private String name;
+    /**
+     * The amount of the transaction.
+     */
+    private int amount;
+    /**
+     * The category of the transaction.
+     * 0 = income
+     * 1 = food
+     * 2 = clothing
+     * 3 = entertainment
+     * 4 = rent
+     */
+    private int category;
+    /**
+     * The date of the transaction.
+     */
+    private GregorianCalendar date;
 
-	/**
-	 * Gets the spending category.
-	 * @return the category
-	 */
-	public final int getCategory() {
-		return category;
-	}
+    /**
+     * Transaction constructor.
+     * @param name Name of the transaction
+     * @param amount Amount of the transaction (positive or negative)
+     * @param category Spending category of the transaction
+     * @param date Date transaction entered
+     */
+    public Transaction(final String name, final int amount,
+            final int category, final GregorianCalendar date) {
+        super();
+        this.name = name;
+        this.amount = amount;
+        this.category = category;
+        this.date = date;
+    }
 
-	/**
-	 * Sets the spending category.
-	 * @param category the category to set
-	 */
-	public final void setCategory(final int category) {
-		this.category = category;
-	}
+    /**
+     * Gets the spending category.
+     * @return the category
+     */
+    public final int getCategory() {
+        return category;
+    }
 
-	/**
-	 * Gets the date.
-	 * @return the date
-	 */
-	public final GregorianCalendar getDate() {
-		return date;
-	}
+    /**
+     * Sets the spending category.
+     * @param category the category to set
+     */
+    public final void setCategory(final int category) {
+        this.category = category;
+    }
 
-	/**
-	 * Sets the date.
-	 * @param date the date to set
-	 */
-	public final void setDate(final GregorianCalendar date) {
-		this.date = date;
-	}
+    /**
+     * Gets the date.
+     * @return the date
+     */
+    public final GregorianCalendar getDate() {
+        return date;
+    }
 
-	/**
-	 * Gets name of the transaction.
-	 * @return the name
-	 */
-	public final String getName() {
-		return name;
-	}
+    /**
+     * Sets the date.
+     * @param date the date to set
+     */
+    public final void setDate(final GregorianCalendar date) {
+        this.date = date;
+    }
 
-	/**
-	 * Sets the name of the transaction.
-	 * @param name the name to set
-	 */
-	public final void setName(final String name) {
-		this.name = name;
-	}
+    /**
+     * Gets name of the transaction.
+     * @return the name
+     */
+    public final String getName() {
+        return name;
+    }
 
-	/**
-	 * Gets the amount of the transaction.
-	 * @return the amount
-	 */
-	public final int getAmount() {
-		return amount;
-	}
+    /**
+     * Sets the name of the transaction.
+     * @param name the name to set
+     */
+    public final void setName(final String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Sets the amount of the transaction.
-	 * @param amount the amount to set
-	 */
-	public final void setAmount(final int amount) {
-		this.amount = amount;
-	}
-	
-	@Override
-	public final String toString() {
-		return name + " " + amount + " " + category + " "
-				+ date.getTimeInMillis();
-	}
+    /**
+     * Gets the amount of the transaction.
+     * @return the amount
+     */
+    public final int getAmount() {
+        return amount;
+    }
+
+    /**
+     * Sets the amount of the transaction.
+     * @param amount the amount to set
+     */
+    public final void setAmount(final int amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public final String toString() {
+        return name + " " + amount + " " + category + " "
+                + date.getTimeInMillis();
+    }
 }
