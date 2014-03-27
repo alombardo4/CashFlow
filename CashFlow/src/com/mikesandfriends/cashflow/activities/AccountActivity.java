@@ -22,10 +22,23 @@ import android.widget.Button;
 import android.widget.ListView;
 
 @SuppressLint("CutPasteId")
+
 public class AccountActivity extends Activity {
+    /**
+     * The array holding the accounts.
+     */
     private ArrayList<Account> items;
+    /**
+     * The UserDataHandler used to interact with the database.
+     */
     private UserDataHandler udh;
+    /**
+     * The current user.
+     */
     private User user;
+    /**.
+     * The array adapter used to hold the names of items
+     */
     private ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
