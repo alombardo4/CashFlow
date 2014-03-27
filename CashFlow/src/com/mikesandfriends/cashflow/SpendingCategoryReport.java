@@ -37,7 +37,7 @@ public class SpendingCategoryReport implements Serializable {
      */
     public SpendingCategoryReport(final List<Transaction> transactions) {
         for (Transaction transaction : transactions) {
-            for (int i = 1; i < 5; i++) {
+            for (int i = 1; i < categorySpending.length; i++) {
                 if (transaction.getCategory() == i) {
                     categorySpending[i] += -1 * transaction.getAmount();
 

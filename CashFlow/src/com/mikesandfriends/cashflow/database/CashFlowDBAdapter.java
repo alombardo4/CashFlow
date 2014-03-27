@@ -23,10 +23,10 @@ import android.util.Log;
 *
 */
 public class CashFlowDBAdapter {
-	private static final String KEY_USERNAME = "username";
-	private static final String KEY_USERPASSWORD = "password";
-	private static final String KEY_ACCOUNTNAME = "name";
-	private static final String KEY_ACCOUNTOWNER = "owner";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_USERPASSWORD = "password";
+    private static final String KEY_ACCOUNTNAME = "name";
+    private static final String KEY_ACCOUNTOWNER = "owner";
 	private static final String KEY_TRANSNAME = "transName";
 	private static final String KEY_TRANSAMOUNT = "transAmount";
 	private static final String KEY_TRANSCAT = "transCat";

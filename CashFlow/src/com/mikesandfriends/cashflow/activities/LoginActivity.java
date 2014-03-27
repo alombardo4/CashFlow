@@ -38,19 +38,20 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), AccountActivity.class);
-                EditText username = (EditText)findViewById(R.id.usernametext);
-                EditText password = (EditText)findViewById(R.id.passwordtext);
+                EditText username = (EditText) findViewById(R.id.usernametext);
+                EditText password = (EditText) findViewById(R.id.passwordtext);
 
-                User user = new User(username.getText().toString(),password.getText().toString());
+                User user = new User(username.getText().toString(),
+                    password.getText().toString());
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("user", user);
                 i.putExtras(bundle);
-                if(lh.checkLogin(user)){
+                if (lh.checkLogin(user)) {
                     startActivity(i);
                     lh.closeAdapt();
                     finish();
-                }
-                else{
+                    }
+                else {
                     CharSequence text = "Incorrect Username or Password";
                     int duration = Toast.LENGTH_SHORT;
                     username.setText("");

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Alec Lombardo
  * @version 1.0
  */
-public class User implements Serializable { 
+public class User implements Serializable {
     /**
      * Necessary for Serialization.
      */
@@ -22,12 +22,12 @@ public class User implements Serializable {
 
     /**
      * Main constructor.
-     * @param username User's username
-     * @param password User's plain text password
+     * @param pusername User's username
+     * @param ppassword User's plain text password
      */
-    public User(final String username, final String password) {
-        this.username = username;
-        this.password = password;
+    public User(final String pusername, final String ppassword) {
+        this.username = pusername;
+        this.password = ppassword;
     }
 
     /**
@@ -47,10 +47,10 @@ public class User implements Serializable {
 
     /**
      * Sets the username.
-     * @param username the username to set
+     * @param pusername the username to set
      */
-    public final void setUsername(final String username) {
-        this.username = username;
+    public final void setUsername(final String pusername) {
+        this.username = pusername;
     }
 
     /**
@@ -63,10 +63,10 @@ public class User implements Serializable {
 
     /**
      * Sets the password.
-     * @param password the password to set
+     * @param ppassword the password to set
      */
-    public final void setPassword(final String password) {
-        this.password = password;
+    public final void setPassword(final String ppassword) {
+        this.password = ppassword;
     }
 
     @Override
