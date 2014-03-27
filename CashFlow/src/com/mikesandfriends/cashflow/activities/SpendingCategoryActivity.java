@@ -1,11 +1,8 @@
 package com.mikesandfriends.cashflow.activities;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import com.mikesandfriends.cashflow.R;
-import com.mikesandfriends.cashflow.R.layout;
-import com.mikesandfriends.cashflow.R.menu;
 import com.mikesandfriends.cashflow.SpendingCategoryReport;
 
 import android.os.Bundle;
@@ -18,7 +15,7 @@ import android.widget.TextView;
 public class SpendingCategoryActivity extends Activity {
     private TextView food, rent, clothing, entertainment, total;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spending_category);
         getActionBar().setTitle("Spending Report");
@@ -35,17 +32,22 @@ public class SpendingCategoryActivity extends Activity {
                 getIntent().getExtras().getSerializable("report");
         Map<Integer, Integer> map = report.getSpendingReport();
 
-        food.setText("Food: $" + (-1 * map.get(1)));
-        rent.setText("Rent: $" + (-1 * map.get(4)));
+        food.setText("Food: $" + (map.get(1)));
+        //4 is the index that rent is in the data structure
+        //and it would be unnecessarily complex to pull it out
+        rent.setText("Rent: $" + (map.get(4)));
         clothing.setText("Clothing: $" + (-1 * map.get(2)));
-        entertainment.setText("Entertainment: $" + (-1 * map.get(3)));
+        //3 is the index that entertainment is in the data structure
+        //and it would be unnecessarily complex to pull it out
+        entertainment.setText("Entertainment: $" + (map.get(3)));
+        //the 3 and 4 are the same as above
         int tot = map.get(1) + map.get(2) + map.get(3) + map.get(4);
         tot *= -1;
         total.setText("Total: $" + tot);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.spending_category, menu);
         return true;

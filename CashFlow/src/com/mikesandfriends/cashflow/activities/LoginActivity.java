@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class LoginActivity extends Activity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -36,7 +36,7 @@ public class LoginActivity extends Activity {
              * Called when the user clicks on the button
              */
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent i = new Intent(getBaseContext(), AccountActivity.class);
                 EditText username = (EditText) findViewById(R.id.usernametext);
                 EditText password = (EditText) findViewById(R.id.passwordtext);
@@ -50,8 +50,7 @@ public class LoginActivity extends Activity {
                     startActivity(i);
                     lh.closeAdapt();
                     finish();
-                    }
-                else {
+                } else {
                     CharSequence text = "Incorrect Username or Password";
                     int duration = Toast.LENGTH_SHORT;
                     username.setText("");
@@ -64,7 +63,7 @@ public class LoginActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         getActionBar().setTitle("Login");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
                 Color.parseColor("#035986")));

@@ -26,7 +26,7 @@ public class SpendingCategoryReportActivity extends Activity {
     private Account account;
     private UserDataHandler udh;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spending_category_report);
         getActionBar().setTitle("Spending Report");
@@ -41,7 +41,7 @@ public class SpendingCategoryReportActivity extends Activity {
         generate.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 GregorianCalendar startdate = new GregorianCalendar();
                 startdate.set(GregorianCalendar.MONTH, start.getMonth());
                 startdate.set(GregorianCalendar.DAY_OF_MONTH,
@@ -80,7 +80,7 @@ public class SpendingCategoryReportActivity extends Activity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         return true;
     }
 

@@ -23,7 +23,7 @@ public class WelcomeActivity extends Activity {
     /**
      * Called when the view is created
      */
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
@@ -37,7 +37,7 @@ public class WelcomeActivity extends Activity {
              * Called when the user clicks on the button
              */
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Intent i = new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(i);
             }
@@ -47,9 +47,9 @@ public class WelcomeActivity extends Activity {
         registerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View arg0) {
+            public void onClick(final View arg0) {
 
-                Intent i = new Intent(getBaseContext(),RegisterActivity.class);
+                Intent i = new Intent(getBaseContext(), RegisterActivity.class);
                 startActivity(i);
             }
         });
@@ -57,7 +57,7 @@ public class WelcomeActivity extends Activity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.welcome, menu);
         return true;

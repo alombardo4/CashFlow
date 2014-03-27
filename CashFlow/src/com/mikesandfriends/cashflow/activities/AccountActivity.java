@@ -41,13 +41,20 @@ public class AccountActivity extends Activity {
      */
     private ArrayAdapter<String> arrayAdapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    /**.
+     * The activity that displays all of the accounts,
+     * allows for new account creation,
+     * and can show reports
+     *
+     * @param bundle with the current user and their information
+     */
+    protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         getActionBar().setTitle("Accounts");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
                 Color.parseColor("#035986")));
-        user = (User)getIntent().getExtras().getSerializable("user");
+        user = (User) getIntent().getExtras().getSerializable("user");
         Button newAccount = (Button) findViewById(R.id.newaccount);
         ListView accountsList = (ListView) findViewById(R.id.accountslist);
         newAccount.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +62,9 @@ public class AccountActivity extends Activity {
              * Called when the user clicks on the button
              */
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), NewAccountActivity.class);
+            public void onClick(final View v) {
+                Intent i = new Intent(getBaseContext(),
+                        NewAccountActivity.class);
                 i.putExtras(getIntent().getExtras());
                 startActivity(i);
             }
@@ -64,7 +72,8 @@ public class AccountActivity extends Activity {
         udh = new UserDataHandler(getBaseContext());
         items = udh.getAccountsForUser(user);
         udh.closeAdapt();
-        arrayAdapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1);
+        arrayAdapter = new ArrayAdapter<String>(getBaseContext(),
+                android.R.layout.simple_list_item_1);
         for (Account item : items) {
             arrayAdapter.add(item.getName());
         }
@@ -73,35 +82,37 @@ public class AccountActivity extends Activity {
         ListView listview = (ListView) findViewById(R.id.accountslist);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View  view, int position,
-                long id) {
+            public void onItemClick(final AdapterView<?> parent,
+                    final View  view, final int position, final long id) {
                     Account account = items.get(position);
                     String indexTag = account.getName();
-                    Intent i = new Intent(getBaseContext(),MyAccountActivity.class);
+                    Intent i = new Intent(getBaseContext(),
+                            MyAccountActivity.class);
                     Bundle b = new Bundle();
                     b.putSerializable("accountName", indexTag);
                     b.putSerializable("user", user);
-                    i.putExtras(b);//"accountName", indexTag); //(String) listview.getItemAtPosition(position));
+                    i.putExtras(b); //"accountName", indexTag);
+                    //(String) listview.getItemAtPosition(position));
                     startActivity(i);
              }
          });
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public final boolean onCreateOptionsMenu(final Menu menu) {
         createMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
         return true;
     }
 
-    private void createMenu(Menu menu) {
+    private void createMenu(final Menu menu) {
         menu.add(0, 0, 1, "Spending Category Report").
         setIcon(R.drawable.ic_action_spendingcategoryreport).
         setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public final boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == 0) {
             Intent i = new Intent(getBaseContext(),
                     SpendingCategoryReportActivity.class);
