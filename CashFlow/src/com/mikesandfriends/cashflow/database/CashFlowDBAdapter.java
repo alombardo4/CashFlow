@@ -17,49 +17,114 @@ import android.util.Log;
 
 /**
  * Allows database interaction.
- * 
+ *
  * @author Alec Lombardo
  * @version 1.0
- * 
+ *
  */
 public class CashFlowDBAdapter {
+    /**
+     * String representing a User's username.
+     */
     private static final String KEY_USERNAME = "username";
+    /**
+     * String representing a User's password.
+     */
     private static final String KEY_USERPASSWORD = "password";
+    /**
+     * String representing a User's account name.
+     */
     private static final String KEY_ACCOUNTNAME = "name";
+    /**
+     * String representing the account's owner.
+     */
     private static final String KEY_ACCOUNTOWNER = "owner";
+    /**
+     * String representing the transaction name.
+     */
     private static final String KEY_TRANSNAME = "transName";
+    /**
+     * String representing the amount in a transaction.
+     */
     private static final String KEY_TRANSAMOUNT = "transAmount";
+    /**
+     * String representing the category for a transaction.
+     */
     private static final String KEY_TRANSCAT = "transCat";
+    /**
+     * String representing the date of a transaction.
+     */
     private static final String KEY_TRANSDATE = "transDate";
+    /**
+     * String representing the name of this database.
+     */
     private static final String DATABASE_NAME = "CashFlowDB";
+    /**
+     * Int representing the version of the database.
+     */
     private static final int DATABASE_VERSION = 1;
+    /**
+     * String representing the tag for the Adapter.
+     */
     private static final String TAG = "CashFlowDBAdapter";
+    /**
+     * String representing the table of users, usernames and passwords.
+     */
     private static final String USERS_CREATE = "CREATE TABLE " + "users" + " ("
             + KEY_USERNAME + " TEXT, " + KEY_USERPASSWORD + " TEXT);";
+    /**
+     * String representing the table of accounts, owners, and names.
+     */
     private static final String ACCOUNTS_CREATE = "CREATE TABLE " + "accounts"
             + " (" + KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME + " TEXT);";
+    /**
+     * String representing the table of transactions, account names,
+     * account owners, and various transaction details.
+     */
     private static final String TRANS_CREATE = "CREATE TABLE " + "transactions"
             + " (" + KEY_ACCOUNTOWNER + " TEXT, " + KEY_ACCOUNTNAME + " TEXT, "
             + KEY_TRANSNAME + " TEXT, " + KEY_TRANSAMOUNT + " TEXT, "
             + KEY_TRANSCAT + " INTEGER, " + KEY_TRANSDATE + " INTEGER);";
+    /**
+     * Context object for the class to work with.
+     */
     private Context context;
+    /**
+     * Object that assists in database-related actions.
+     */
     private DatabaseHelper dbHelper;
+    /**
+     * Database obtained by the DatabaseHelper object.
+     */
     private SQLiteDatabase db;
 
     /**
+     * int of value 5 used later in obtaining the Long for the calendar.
+     */
+    private final int five = 5;
+    /**
+     * int of value 4 used later in obtaining the category.
+     */
+    private final int four = 4;
+    /**
+     * int of value 3 used later in obtaining a String for the transaction.
+     */
+    private final int three = 3;
+
+    /**
      * Adapter Constructor.
-     * 
-     * @param context
+     *
+     * @param pcontext
      *            access context
      */
-    public CashFlowDBAdapter(final Context context) {
-        this.context = context;
-        dbHelper = new DatabaseHelper(context);
+    public CashFlowDBAdapter(final Context pcontext) {
+        this.context = pcontext;
+        dbHelper = new DatabaseHelper(pcontext);
     }
 
     /**
      * Opens the Database.
-     * 
+     *
      * @return returns the address of the database location for writing.
      */
     public final CashFlowDBAdapter open() {
@@ -83,7 +148,7 @@ public class CashFlowDBAdapter {
 
     /**
      * Writes a user in the database.
-     * 
+     *
      * @param user
      *            user to be written
      */
@@ -97,13 +162,13 @@ public class CashFlowDBAdapter {
 
     /**
      * Gets all users.
-     * 
+     *
      * @return returns all users
      */
     public final ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
 
-        String[] columns = { KEY_USERNAME, KEY_USERPASSWORD };
+        String[] columns = {KEY_USERNAME, KEY_USERPASSWORD};
         Cursor cursor = db
                 .query("users", columns, null, null, null, null, null);
 
@@ -119,18 +184,18 @@ public class CashFlowDBAdapter {
 
     /**
      * Deletes a user.
-     * 
+     *
      * @param user
      *            user to be deleted
      */
     public final void deleteUser(final User user) {
-        String[] whereArgs = { user.getUsername() };
+        String[] whereArgs = {user.getUsername()};
         db.delete("users", KEY_USERNAME + "=?", whereArgs);
     }
 
     /**
      * Adds an account to a user.
-     * 
+     *
      * @param name
      *            Name of the account
      * @param user
@@ -146,14 +211,14 @@ public class CashFlowDBAdapter {
 
     /**
      * Gets a list of accounts for a user.
-     * 
+     *
      * @param user
      *            User to find accounts for
      * @return All accounts associated with user
      */
     public final ArrayList<Account> getAccountsForUser(final User user) {
         ArrayList<Account> accounts = new ArrayList<Account>();
-        String[] columns = { KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER };
+        String[] columns = {KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER};
         Cursor cursor = db.query("accounts", columns, null, null, null, null,
                 null);
 
@@ -170,21 +235,21 @@ public class CashFlowDBAdapter {
 
     /**
      * Deletes an account.
-     * 
+     *
      * @param name
      *            Name of the account to delete
      * @param user
      *            User who owns the account
      */
     public final void deleteAccount(final String name, final User user) {
-        final String[] whereArgs = { name, user.getUsername() };
+        final String[] whereArgs = {name, user.getUsername()};
         db.delete("accounts", KEY_ACCOUNTNAME + "=? AND " + KEY_ACCOUNTOWNER
                 + "=?", whereArgs);
     }
 
     /**
      * Adds a transaction to a user's account.
-     * 
+     *
      * @param transaction
      *            transaction to be added
      * @param account
@@ -208,7 +273,7 @@ public class CashFlowDBAdapter {
 
     /**
      * Returns all transactions for a given user account.
-     * 
+     *
      * @param account
      *            Account owning the transactions
      * @param user
@@ -218,7 +283,7 @@ public class CashFlowDBAdapter {
     public final ArrayList<Transaction> getTransactionsForAccount(
             final Account account, final User user) {
         ArrayList<Transaction> trans = new ArrayList<Transaction>();
-        final String[] columns = { KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER,
+        final String[] columns = {KEY_ACCOUNTNAME, KEY_ACCOUNTOWNER,
                 KEY_TRANSAMOUNT, KEY_TRANSNAME, KEY_TRANSCAT, KEY_TRANSDATE };
         Cursor cursor = db.query("transactions", columns, null, null, null,
                 null, null);
@@ -228,11 +293,11 @@ public class CashFlowDBAdapter {
             if (cursor.getString(1).equals(user.getUsername())
                     && cursor.getString(0).equals(account.getName())) {
                 GregorianCalendar date = new GregorianCalendar();
-                date.setTimeInMillis(cursor.getLong(5));
+                date.setTimeInMillis(cursor.getLong(five));
 
-                int cat = cursor.getInt(4);
+                int cat = cursor.getInt(four);
 
-                Transaction temp = new Transaction(cursor.getString(3),
+                Transaction temp = new Transaction(cursor.getString(three),
                         Integer.parseInt(cursor.getString(2)), cat, date);
                 trans.add(temp);
             }
@@ -243,7 +308,7 @@ public class CashFlowDBAdapter {
 
     /**
      * Deletes a transaction.
-     * 
+     *
      * @param transaction
      *            the transaction to delete
      * @param account
@@ -253,7 +318,7 @@ public class CashFlowDBAdapter {
      */
     public final void deleteTransaction(final Transaction transaction,
             final Account account, final User user) {
-        String[] whereArgs = { transaction.getName(),
+        String[] whereArgs = {transaction.getName(),
                 Integer.toString(transaction.getAmount()), account.getName(),
                 user.getUsername() };
         db.delete("transactions",
@@ -264,14 +329,14 @@ public class CashFlowDBAdapter {
 
     /**
      * Supplementary Database helper class.
-     * 
+     *
      * @author Alec Lombardo
      * @version 1.0
      */
     private static class DatabaseHelper extends SQLiteOpenHelper {
         /**
          * Constructor for DatabaseHelper.
-         * 
+         *
          * @param context
          *            The application context
          */
@@ -280,7 +345,7 @@ public class CashFlowDBAdapter {
         }
 
         @Override
-        /** 
+        /**
          * Error testing for database access
          * @param db database to be tested
          */
@@ -297,9 +362,9 @@ public class CashFlowDBAdapter {
         @Override
         /**
          * Upgrades database tables
-         * @param db database address 
+         * @param db database address
          * @param oldVersion old version number
-         * @param newVersion new version number 
+         * @param newVersion new version number
          */
         public void onUpgrade(final SQLiteDatabase db, final int oldVersion,
                 final int newVersion) {

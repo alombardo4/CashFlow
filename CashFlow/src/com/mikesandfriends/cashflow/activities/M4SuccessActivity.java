@@ -8,6 +8,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 
+/**
+ * Activity to show whether or not the login worked
+ * successfully.
+ *
+ * @author Chelsea
+ *
+ */
+
 public class M4SuccessActivity extends Activity {
 
     @Override

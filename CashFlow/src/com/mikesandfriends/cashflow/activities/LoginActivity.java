@@ -16,6 +16,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * The Activity that handles letting an existing user log
+ * into CashFlow or displays an error message for
+ * incorrect login.
+ *
+ * @author Chelsea
+ *
+ */
+
 public class LoginActivity extends Activity {
 
     @Override

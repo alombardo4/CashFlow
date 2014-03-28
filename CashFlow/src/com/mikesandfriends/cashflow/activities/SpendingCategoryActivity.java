@@ -12,8 +12,29 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
 import android.widget.TextView;
 
+/**
+ *Activity that handles displaying the
+ *spending categories.
+ *
+ * @author Chelsea
+ *
+ */
 public class SpendingCategoryActivity extends Activity {
+    /**
+     * Objects that display the spending for the categories
+     * food, rent, clothing, entertainment and total.
+     */
     private TextView food, rent, clothing, entertainment, total;
+    /**
+     * Index to retrieve entertainment from the map.
+     */
+    private final int entIndex = 3;
+    /**
+     * Index to retrieve rent from the map.
+     */
+    private final int rentIndex = 4;
+
+
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +56,15 @@ public class SpendingCategoryActivity extends Activity {
         food.setText("Food: $" + (map.get(1)));
         //4 is the index that rent is in the data structure
         //and it would be unnecessarily complex to pull it out
-        rent.setText("Rent: $" + (map.get(4)));
+        rent.setText("Rent: $" + (map.get(rentIndex)));
         clothing.setText("Clothing: $" + (-1 * map.get(2)));
         //3 is the index that entertainment is in the data structure
         //and it would be unnecessarily complex to pull it out
-        entertainment.setText("Entertainment: $" + (map.get(3)));
+        entertainment.setText("Entertainment: $"
+            + (map.get(entIndex)));
         //the 3 and 4 are the same as above
-        int tot = map.get(1) + map.get(2) + map.get(3) + map.get(4);
+        int tot = map.get(1) + map.get(2) + map.get(entIndex)
+            + map.get(rentIndex);
         tot *= -1;
         total.setText("Total: $" + tot);
     }

@@ -26,6 +26,9 @@ import android.widget.Toast;
 @SuppressLint("DefaultLocale")
 public class RegisterActivity extends Activity {
 
+    /**
+     * The UserDataHandler object used to interact with the database.
+     */
     private UserDataHandler lh;
 
     @Override

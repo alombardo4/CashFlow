@@ -18,6 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Activity for creating a new account for the user.
+ *
+ * @author Chelsea
+ *
+ */
 public class NewAccountActivity extends Activity {
 
     @Override

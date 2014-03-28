@@ -21,6 +21,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+/**
+ * Tells Lint to ignore warnings for this annotation.
+ *
+ */
 @SuppressLint("CutPasteId")
 
 public class AccountActivity extends Activity {
@@ -36,8 +40,8 @@ public class AccountActivity extends Activity {
      * The current user.
      */
     private User user;
-    /**.
-     * The array adapter used to hold the names of items
+    /**
+     * The array adapter used to hold the names of items.
      */
     private ArrayAdapter<String> arrayAdapter;
     @Override
@@ -104,6 +108,12 @@ public class AccountActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         return true;
     }
+    /**.
+     * Creates the menu from which the user can choose
+     * the Spending Category Report
+     *
+     * @param menu the menu from which to choose the report
+     */
 
     private void createMenu(final Menu menu) {
         menu.add(0, 0, 1, "Spending Category Report").

@@ -19,11 +19,33 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+/**
+ * Activity for actually generating the
+ * the Spending Category Report.
+ *
+ * @author Chelsea
+ *
+ */
 public class SpendingCategoryReportActivity extends Activity {
+    /**
+     * Object used to handle selecting dates.
+     */
     private DatePicker start, end;
+    /**
+     * Button that the user clicks to generate the report.
+     */
     private Button generate;
+    /**
+     * User associated with this Spending Category Report.
+     */
     private User user;
+    /**
+     * Account associated with this Spending Category Report.
+     */
     private Account account;
+    /**
+     * UserDataHandler object used to interact with the database.
+     */
     private UserDataHandler udh;
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
