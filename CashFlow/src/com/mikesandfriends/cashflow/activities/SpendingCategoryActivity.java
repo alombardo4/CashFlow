@@ -24,20 +24,20 @@ public class SpendingCategoryActivity extends Activity {
      * Objects that display the spending for the categories
      * food, rent, clothing, entertainment and total.
      */
-    private TextView food, rent, clothing, entertainment, total;
+    private TextView food, rent, clothing, entertainment, total; //need it here
     /**
      * Index to retrieve entertainment from the map.
      */
-    private final int entIndex = 3;
+    private static final int ENTINDEX = 3;
     /**
      * Index to retrieve rent from the map.
      */
-    private final int rentIndex = 4;
+    private static final int RENTINDEX = 4;
 
 
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected final void onCreate(final Bundle saved) {
+        super.onCreate(saved);
         setContentView(R.layout.activity_spending_category);
         getActionBar().setTitle("Spending Report");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
@@ -48,23 +48,23 @@ public class SpendingCategoryActivity extends Activity {
         entertainment = (TextView) findViewById(R.id.entertainmentcategory);
         total = (TextView) findViewById(R.id.totalcategory);
 
-        SpendingCategoryReport report =
+        final SpendingCategoryReport report =
                 (SpendingCategoryReport)
                 getIntent().getExtras().getSerializable("report");
-        Map<Integer, Integer> map = report.getSpendingReport();
+        final Map<Integer, Integer> map = report.getSpendingReport();
 
         food.setText("Food: $" + (map.get(1)));
         //4 is the index that rent is in the data structure
         //and it would be unnecessarily complex to pull it out
-        rent.setText("Rent: $" + (map.get(rentIndex)));
+        rent.setText("Rent: $" + (map.get(RENTINDEX)));
         clothing.setText("Clothing: $" + (-1 * map.get(2)));
         //3 is the index that entertainment is in the data structure
         //and it would be unnecessarily complex to pull it out
         entertainment.setText("Entertainment: $"
-            + (map.get(entIndex)));
+            + (map.get(RENTINDEX)));
         //the 3 and 4 are the same as above
-        int tot = map.get(1) + map.get(2) + map.get(entIndex)
-            + map.get(rentIndex);
+        int tot = map.get(1) + map.get(2) + map.get(ENTINDEX)
+            + map.get(RENTINDEX);
         tot *= -1;
         total.setText("Total: $" + tot);
     }

@@ -2,7 +2,6 @@ package com.mikesandfriends.cashflow.activities;
 
 import java.util.GregorianCalendar;
 
-import com.mikesandfriends.cashflow.Account;
 import com.mikesandfriends.cashflow.R;
 import com.mikesandfriends.cashflow.SpendingCategoryReport;
 import com.mikesandfriends.cashflow.User;
@@ -34,22 +33,19 @@ public class SpendingCategoryReportActivity extends Activity {
     /**
      * Button that the user clicks to generate the report.
      */
-    private Button generate;
+    private Button generate; //better kept here
     /**
      * User associated with this Spending Category Report.
      */
     private User user;
-    /**
-     * Account associated with this Spending Category Report.
-     */
-    private Account account;
+
     /**
      * UserDataHandler object used to interact with the database.
      */
     private UserDataHandler udh;
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected final void onCreate(final Bundle saved) {
+        super.onCreate(saved);
         setContentView(R.layout.activity_spending_category_report);
         getActionBar().setTitle("Spending Report");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
@@ -64,34 +60,34 @@ public class SpendingCategoryReportActivity extends Activity {
 
             @Override
             public void onClick(final View v) {
-                GregorianCalendar startdate = new GregorianCalendar();
+                final GregorianCalendar startdate = new GregorianCalendar();
                 startdate.set(GregorianCalendar.MONTH, start.getMonth());
                 startdate.set(GregorianCalendar.DAY_OF_MONTH,
                         start.getDayOfMonth());
                 startdate.set(GregorianCalendar.YEAR, end.getYear());
-                GregorianCalendar enddate = new GregorianCalendar();
+                final GregorianCalendar enddate = new GregorianCalendar();
                 enddate.set(GregorianCalendar.MONTH, end.getMonth());
                 enddate.set(GregorianCalendar.DAY_OF_MONTH,
                         end.getDayOfMonth());
                 enddate.set(GregorianCalendar.YEAR, end.getYear());
-                SpendingCategoryReport report =
-                        udh.generateSpendingCategoryReport(user,
-                                startdate, enddate);
                 if (startdate.getTimeInMillis() == enddate.getTimeInMillis()) {
                     Toast.makeText(getBaseContext(), "Enter a valid date range",
                             Toast.LENGTH_SHORT).show();
                 } else {
+                    final SpendingCategoryReport report =
+                            udh.generateSpendingCategoryReport(user,
+                                    startdate, enddate);
                     if (report == null) {
                         Toast.makeText(getBaseContext(),
                                 "No report could be generated",
                                 Toast.LENGTH_SHORT).show();
                     } else {
-                        Intent i = new Intent(getBaseContext(),
+                        final Intent intent = new Intent(getBaseContext(),
                                 SpendingCategoryActivity.class);
-                        Bundle b = new Bundle();
-                        b.putSerializable("report", report);
-                        i.putExtras(b);
-                        startActivity(i);
+                        final Bundle bundle = new Bundle();
+                        bundle.putSerializable("report", report);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }
                 }
 

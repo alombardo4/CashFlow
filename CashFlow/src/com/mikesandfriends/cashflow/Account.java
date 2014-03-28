@@ -37,7 +37,7 @@ public class Account {
         boolean retVal = false; //this must be set to false to compile
         if (obj == this) {
             retVal = true;
-        } else    if (obj instanceof Account) {
+        } else if (obj instanceof Account) {
             if (((Account) obj).getName().equals(name)) { //Unnecessarily wordy
                 retVal = true;
             }

@@ -16,11 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SpendingCategoryReport implements Serializable {
      /**
       * The category of the transaction.
-      * 0 = income
-      * 1 = food
-      * 2 = clothing
-      * 3 = entertainment
-      * 4 = rent
+      * 0 = income, 1 = food, 2 = clothing, 3 = entertainment, 4 = rent
       **/
     /**
      * Necessary for Serialization.
@@ -29,14 +25,14 @@ public class SpendingCategoryReport implements Serializable {
     /**
      * The spending for each category.
      */
-    private int[] categorySpending = {0, 0, 0, 0, 0};
+    private final int[] categorySpending = {0, 0, 0, 0, 0};
 
     /**
      * Builds the report upon creation.
      * @param transactions All transactions within the requested date range
      */
     public SpendingCategoryReport(final List<Transaction> transactions) {
-        for (Transaction transaction : transactions) {
+        for (final Transaction transaction : transactions) {
             for (int i = 1; i < categorySpending.length; i++) {
                 if (transaction.getCategory() == i) {
                     categorySpending[i] += -1 * transaction.getAmount();

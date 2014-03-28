@@ -19,8 +19,8 @@ import android.view.Menu;
 public class M4SuccessActivity extends Activity {
 
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected final void onCreate(final Bundle saved) {
+        super.onCreate(saved);
         setContentView(R.layout.activity_m4_success);
 
         getActionBar().setTitle("You logged in!");

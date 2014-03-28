@@ -48,14 +48,14 @@ public class UserDataHandler {
      * @return boolean Whether the username is valid or not.
      */
      public final boolean isValidUsername(final String username) {
-
-        ArrayList<User> userList = adapt.getUsers();
-        for (User user : userList) {
-        if (user.getUsername().toString().equals(username.toString())) {
-            return false;
+        boolean retVal = true;
+        final ArrayList<User> userList = adapt.getUsers();
+        for (final User user : userList) {
+            if (user.getUsername().equals(username)) {
+                retVal = false;
             }
         }
-        return true;
+        return retVal;
         }
 
     /**
@@ -66,7 +66,7 @@ public class UserDataHandler {
      * @return Returns boolean based on login.
      */
     public final boolean checkLogin(final User user) {
-        ArrayList<User> users = adapt.getUsers();
+        final ArrayList<User> users = adapt.getUsers();
 
         return users.contains(user);
     }
@@ -80,7 +80,7 @@ public class UserDataHandler {
 
     public final void add(final User user) {
         adapt.addUser(user);
-        }
+    }
 
     /**
      * Deletes the user from the database.
@@ -173,18 +173,17 @@ public class UserDataHandler {
     /**
      * Computes the balance for a given account.
      *
-     * @param account
-     *            Account to calculate for.
-     * @param user
-     *            Use who owns the account.
+     * @param account Account to calculate for.
+     * @param user Use who owns the account.
      * @return balance
      */
 
     public final int getBalanceForAccount(final Account account,
         final User user) {
-        ArrayList<Transaction> trans = getTransactionsForAccount(account, user);
+        final ArrayList<Transaction> trans =
+            getTransactionsForAccount(account, user);
         int balance = 0;
-        for (Transaction transaction : trans) {
+        for (final Transaction transaction : trans) {
             balance += transaction.getAmount();
         }
         return balance;
@@ -209,12 +208,9 @@ public class UserDataHandler {
     /**
      * Generates the spending category report.
      *
-     * @param user
-     *            The user owning the report.
-     * @param start
-     *            The start date for the report.
-     * @param end
-     *            The end date for the report.
+     * @param user The user owning the report.
+     * @param start The start date for the report.
+     * @param end The end date for the report.
      * @return The final spending category report.
      */
 
@@ -227,11 +223,10 @@ public class UserDataHandler {
             final ArrayList<Transaction> temp = adapt
                  .getTransactionsForAccount(account, user);
         for (final Transaction tran : temp) {
-             if (((start.getTimeInMillis()
-                 - tran.getDate().getTimeInMillis() <= 0)
-
-         && (end.getTimeInMillis() - tran.getDate()
-                .getTimeInMillis()) >= 0)) {
+             if (start.getTimeInMillis()
+                 - tran.getDate().getTimeInMillis() <= 0
+         && end.getTimeInMillis() - tran.getDate()
+                .getTimeInMillis() >= 0) {
                     trans.add(tran);
                 }
             }

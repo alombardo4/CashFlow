@@ -26,19 +26,23 @@ import android.widget.Toast;
  */
 
 public class LoginActivity extends Activity {
-
+    /**
+     * Holds the text to be shown if bad login.
+     */
+    private final CharSequence badinput = "Incorrect Username or Password";
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected final void onCreate(final Bundle saved) {
+        super.onCreate(saved);
         setContentView(R.layout.activity_login);
 
         getActionBar().setTitle("Log In");
         getActionBar().setBackgroundDrawable(new ColorDrawable(
                 Color.parseColor("#035986")));
 
-        Button loginButton = (Button) findViewById(R.id.loginscreenloginbutton);
+        final Button loginButton =
+                (Button) findViewById(R.id.loginscreenloginbutton);
 
-        final UserDataHandler lh = new UserDataHandler(getBaseContext());
+        final UserDataHandler udh = new UserDataHandler(getBaseContext());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             /**
@@ -46,25 +50,27 @@ public class LoginActivity extends Activity {
              */
             @Override
             public void onClick(final View v) {
-                Intent i = new Intent(getBaseContext(), AccountActivity.class);
-                EditText username = (EditText) findViewById(R.id.usernametext);
-                EditText password = (EditText) findViewById(R.id.passwordtext);
+                final Intent intent = new Intent(getBaseContext(),
+                        AccountActivity.class);
+                final EditText username =
+                    (EditText) findViewById(R.id.usernametext);
+                final EditText password =
+                    (EditText) findViewById(R.id.passwordtext);
 
-                User user = new User(username.getText().toString(),
+                final User user = new User(username.getText().toString(),
                     password.getText().toString());
-                Bundle bundle = new Bundle();
+                final Bundle bundle = new Bundle();
                 bundle.putSerializable("user", user);
-                i.putExtras(bundle);
-                if (lh.checkLogin(user)) {
-                    startActivity(i);
-                    lh.closeAdapt();
+                intent.putExtras(bundle);
+                if (udh.checkLogin(user)) {
+                    startActivity(intent);
+                    udh.closeAdapt();
                     finish();
                 } else {
-                    CharSequence text = "Incorrect Username or Password";
-                    int duration = Toast.LENGTH_SHORT;
+                    final int duration = Toast.LENGTH_SHORT;
                     username.setText("");
                     password.setText("");
-                    Toast.makeText(getBaseContext(), text, duration).show();
+                    Toast.makeText(getBaseContext(), badinput, duration).show();
 
                 }
             }

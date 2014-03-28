@@ -65,11 +65,11 @@ public class MyAccountActivity extends Activity {
     /**
      * int of value 4 for the categories.
      */
-    private final int cat4 = 4;
+    private static final int CAT4 = 4;
     /**
      * int of value 3 for the categories.
      */
-    private final int cat3 = 3;
+    private static final int CAT3 = 3;
 
     @Override
     protected final void onCreate(final Bundle savedInstanceState) {
@@ -154,33 +154,36 @@ public class MyAccountActivity extends Activity {
                     int afterTrans = balance - money;
                     balanceOnScreen.setText("Balance: $" + afterTrans);
                     money = money - 2 * money;
-                    GregorianCalendar day = new GregorianCalendar();
+                    final GregorianCalendar day = new GregorianCalendar();
                     day.set(GregorianCalendar.DAY_OF_MONTH,
                             date.getDayOfMonth());
                     day.set(GregorianCalendar.MONTH, date.getMonth());
                     day.set(GregorianCalendar.YEAR, date.getYear());
-                    int cat = 0;
+                    int cat = 0; //need to define so it compiles
+                    //for the if's, that makes it unnecessarily complex code
                     if (categorySpinner.getSelectedItemPosition() == 0) {
                         cat = 1;
                     } else if (categorySpinner.getSelectedItemId() == 1) {
-                        cat = cat4;
+                        cat = CAT3;
                     } else if (categorySpinner.getSelectedItemId() == 2) {
                         cat = 2;
-                    } else if (categorySpinner.getSelectedItemId() == cat3) {
-                        cat = cat3;
+                    } else if (categorySpinner.getSelectedItemId() == CAT3) {
+                        cat = CAT4;
                     }
-                    Transaction trans = new Transaction(description.toString(),
+                    final Transaction trans =
+                            new Transaction(description.toString(),
                             money, cat, day);
                     udl.addTransactiontoAccount(trans, new Account(ids), user);
                 } else {
                     CharSequence text;
+                    //makes it too complex if you remove the 1
                     if (description.getText().toString().length() < 1) {
                         text = "Description must be at"
                                 + " least 1 character in length";
                     } else {
                         text = "Amount must be at least 1 character in length";
                     }
-                    int duration = Toast.LENGTH_SHORT;
+                    final int duration = Toast.LENGTH_SHORT;
                     description.setText("");
                     transAmount.setText("");
                     Toast.makeText(getBaseContext(), text, duration).show();

@@ -25,15 +25,20 @@ import android.widget.Toast;
  *
  */
 public class NewAccountActivity extends Activity {
+    /**
+     * The error message if account exists.
+     */
+    private static final CharSequence TEXT = "Account already exists!";
 
     @Override
-    protected final void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected final void onCreate(final Bundle saved) {
+        super.onCreate(saved);
         setContentView(R.layout.activity_new_account);
         getActionBar().setTitle("New Account");
         getActionBar().setBackgroundDrawable(
                 new ColorDrawable(Color.parseColor("#035986")));
-        Button submitNewAccount = (Button) findViewById(R.id.addthisaccount);
+        final Button submitNewAccount = (Button)
+            findViewById(R.id.addthisaccount);
 
         submitNewAccount.setOnClickListener(new View.OnClickListener() {
             /**
@@ -41,28 +46,28 @@ public class NewAccountActivity extends Activity {
              */
             @Override
             public void onClick(final View view) {
-                Intent intent =
+                final Intent intent =
                         new Intent(getBaseContext(), AccountActivity.class);
                 intent.putExtras(getIntent().getExtras());
-                EditText accountName =
+                final EditText accountName =
                         (EditText) findViewById(R.id.accountname);
-                User user = (User) getIntent().getExtras().getSerializable(
-                        "user");
-                UserDataHandler dh = new UserDataHandler(getBaseContext());
-                ArrayList<Account> accountList = dh.getAccountsForUser(user);
+                final User user = (User)
+                    getIntent().getExtras().getSerializable("user");
+                final UserDataHandler udh =
+                    new UserDataHandler(getBaseContext());
+                final ArrayList<Account> accountList =
+                    udh.getAccountsForUser(user);
                 final Account newAccount = new Account(accountName.getText()
                         .toString());
-                if (!accountList.contains(newAccount)) {
-                    dh.createAccount(newAccount, user);
-                    startActivity(intent);
-                    dh.closeAdapt();
-                    finish();
-                } else {
-                    CharSequence text = "Account already exists!";
-                    int duration = Toast.LENGTH_SHORT;
+                if (accountList.contains(newAccount)) {
+                    final int duration = Toast.LENGTH_SHORT;
                     accountName.setText("");
-                    Toast.makeText(getBaseContext(), text, duration).show();
-
+                    Toast.makeText(getBaseContext(), TEXT, duration).show();
+                } else {
+                    udh.createAccount(newAccount, user);
+                    startActivity(intent);
+                    udh.closeAdapt();
+                    finish();
                 }
             }
         });

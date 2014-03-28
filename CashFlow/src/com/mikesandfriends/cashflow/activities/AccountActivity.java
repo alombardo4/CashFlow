@@ -35,7 +35,7 @@ public class AccountActivity extends Activity {
     /**
      * The UserDataHandler used to interact with the database.
      */
-    private UserDataHandler udh;
+    private UserDataHandler udh; //can't needs to be used in multiple parts
     /**
      * The current user.
      */
@@ -43,7 +43,7 @@ public class AccountActivity extends Activity {
     /**
      * The array adapter used to hold the names of items.
      */
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<String> arrayAdapter; //can't, used elsewhere
     @Override
     /**.
      * The activity that displays all of the accounts,
@@ -59,18 +59,19 @@ public class AccountActivity extends Activity {
         getActionBar().setBackgroundDrawable(new ColorDrawable(
                 Color.parseColor("#035986")));
         user = (User) getIntent().getExtras().getSerializable("user");
-        Button newAccount = (Button) findViewById(R.id.newaccount);
-        ListView accountsList = (ListView) findViewById(R.id.accountslist);
+        final Button newAccount = (Button) findViewById(R.id.newaccount);
+        final ListView accountsList =
+            (ListView) findViewById(R.id.accountslist);
         newAccount.setOnClickListener(new View.OnClickListener() {
             /**
              * Called when the user clicks on the button
              */
             @Override
             public void onClick(final View v) {
-                Intent i = new Intent(getBaseContext(),
+                final Intent intent = new Intent(getBaseContext(),
                         NewAccountActivity.class);
-                i.putExtras(getIntent().getExtras());
-                startActivity(i);
+                intent.putExtras(getIntent().getExtras());
+                startActivity(intent);
             }
         });
         udh = new UserDataHandler(getBaseContext());
@@ -78,26 +79,27 @@ public class AccountActivity extends Activity {
         udh.closeAdapt();
         arrayAdapter = new ArrayAdapter<String>(getBaseContext(),
                 android.R.layout.simple_list_item_1);
-        for (Account item : items) {
+        for (final Account item : items) {
             arrayAdapter.add(item.getName());
         }
         accountsList.setAdapter(arrayAdapter);
 
-        ListView listview = (ListView) findViewById(R.id.accountslist);
+        final ListView listview = (ListView) findViewById(R.id.accountslist);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> parent,
                     final View  view, final int position, final long id) {
-                    Account account = items.get(position);
-                    String indexTag = account.getName();
-                    Intent i = new Intent(getBaseContext(),
+                    //id is standard android name
+                    final Account account = items.get(position);
+                    final String indexTag = account.getName();
+                    final Intent intent = new Intent(getBaseContext(),
                             MyAccountActivity.class);
-                    Bundle b = new Bundle();
-                    b.putSerializable("accountName", indexTag);
-                    b.putSerializable("user", user);
-                    i.putExtras(b); //"accountName", indexTag);
+                    final Bundle bundle = new Bundle();
+                    bundle.putSerializable("accountName", indexTag);
+                    bundle.putSerializable("user", user);
+                    intent.putExtras(bundle); //"accountName", indexTag);
                     //(String) listview.getItemAtPosition(position));
-                    startActivity(i);
+                    startActivity(intent);
              }
          });
     }
@@ -123,13 +125,13 @@ public class AccountActivity extends Activity {
 
     @Override
     public final boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == 0) {
-            Intent i = new Intent(getBaseContext(),
+        if (item.getItemId() == 0) { //android standard practice
+            final Intent intent = new Intent(getBaseContext(),
                     SpendingCategoryReportActivity.class);
-            Bundle b = new Bundle();
-            b.putSerializable("user", user);
-            i.putExtras(b);
-            startActivity(i);
+            final Bundle bundle = new Bundle();
+            bundle.putSerializable("user", user);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
         return true;
     }
