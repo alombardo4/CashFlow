@@ -6,6 +6,13 @@ package com.mikesandfriends.cashflow;
  * @version 1.0
  */
 public class Account {
+
+
+    /**
+     * The number used for the hash.
+     */
+    private static final int NUMBER = 5;
+
     /**
      * The name of the account.
      */
@@ -29,7 +36,23 @@ public class Account {
 
     @Override
     public final int hashCode() {
-        return name.hashCode();
+        int sum = 0;
+        if (name.length() > NUMBER) {
+        for (int i = 0, n = name.length(); i < n; i++) {
+            char c = name.charAt(i);
+            int returnValue = (int) c * 2;
+            returnValue += 1;
+            sum = sum + returnValue;
+        }
+            return sum;
+        } else {
+            for (int i = 0, n = name.length(); i < n; i++) {
+                char c = name.charAt(i);
+                int returnValue = (int) c;
+                sum = sum + returnValue;
+            }
+                return sum;
+        }
     }
 
     @Override

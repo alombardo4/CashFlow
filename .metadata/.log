@@ -90,3 +90,13 @@ org.eclipse.core.internal.resources.ResourceException: Invalid project descripti
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
 Contains: OK
 Contains: /Users/brettlyle/Documents/AppDevelopment/Android/CashFlow/CashFlow overlaps the location of another project: 'CashFlow'
+!SESSION 2014-03-31 12:56:27.930 -----------------------------------------------
+eclipse.buildId=v22.3.0-887826
+java.version=1.6.0_65
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product -product com.android.ide.eclipse.adt.package.product -keyring /Users/MikeAvery/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product com.android.ide.eclipse.adt.package.product -data /Users/MikeAvery/Google Drive/Mike (Drive)/School/College/2_Sophomore_Year/Semester_2/CS_2340/CashFlow -product com.android.ide.eclipse.adt.package.product -keyring /Users/MikeAvery/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2014-03-31 12:56:43.120
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
