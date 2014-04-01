@@ -115,4 +115,25 @@ public class Transaction {
         return name + " " + amount + " " + category + " "
                 + date.getTimeInMillis();
     }
+    /**.
+     * Checks if the transaction has all of the fields to be a valid transaction
+     * @return boolean if it passes or not.
+     */
+    public final Boolean isValidTransaction() {
+        if (name.length() < 1) {
+            return false;
+        }
+        if (date == null) {
+            return false;
+        }
+      //the 4 is easier for number of categories
+        if (category > 4 || category < 0) {
+            //the 4 is easier for number of categories
+            return false;
+        }
+        if (amount < 0) {
+            return false;
+        }
+        return true;
+    }
 }
