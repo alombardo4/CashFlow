@@ -1,5 +1,7 @@
 package com.mikesandfriends.cashflow;
 
+
+
 /**
  * Class to represent an account.
  * @author Alec Lombardo
@@ -17,6 +19,10 @@ public class Account {
      * The name of the account.
      */
     private final transient String name;
+    /**
+     * Balance of the account.
+     */
+    private double accountBalance;
 
     /**
      * Constructor for Account.
@@ -24,6 +30,7 @@ public class Account {
      */
     public Account(final String aname) {
         this.name = aname;
+        accountBalance = 0;
     }
 
     /**
@@ -68,5 +75,33 @@ public class Account {
             retVal = false;
         }
         return retVal;
+    }
+/**
+ * Set the balance to a certain amount.
+ * 
+ * @param newBalance the new balance to set
+ */
+    public final void setBalance(double newBalance) {
+    	accountBalance = newBalance;
+    }
+    /**
+     * Get the balance.
+     */
+    public final double getBalance(){
+    	return accountBalance;
+    }
+
+
+    /**
+     * Checks if the balance is still valid
+     * after trying a transaction.
+     *
+     * @param amount amount to subtract from balance
+     * @return boolean
+     */
+
+    public final boolean validAfterWithdrawal(final double amount) {
+        double newBalance = accountBalance - amount;
+        return newBalance >= 0;
     }
 }
