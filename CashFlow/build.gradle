@@ -1,0 +1,42 @@
+//Build for CashFlow
+//Team 25 Mikes and Friends
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    //required for android building
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
+//contains plugin java
+apply plugin: 'android'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    //compiles to Android 4.4
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+
+    sourceSets {
+        main {
+            //manifest for the app
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the tests to tests/java, tests/res, etc...
+        instrumentTest.setRoot('tests')
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+}

@@ -8,7 +8,7 @@ import junit.framework.TestCase;
  * @version 1.0
  *
  */
-public class AccountTest extends TestCase {
+public class AccountEqualsTest extends TestCase {
     /**
      * The basic account to run tests against.
      */
