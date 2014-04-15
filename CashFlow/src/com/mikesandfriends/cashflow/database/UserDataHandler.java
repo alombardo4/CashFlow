@@ -101,7 +101,7 @@ public class UserDataHandler {
         return adapt.getUsers();
 
     }
-
+    
     /**
      * Gets all the accounts for a user.
      *

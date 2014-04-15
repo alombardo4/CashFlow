@@ -32,6 +32,22 @@ public class CashFlowDBAdapter { //all methods are needed for functionality
      */
     private static final String KEY_USERPASSWORD = "password";
     /**
+     * Represents user's email.
+     */
+    private static final String KEY_USEREMAIL = "email";
+    /**
+     * Represents user's security question.
+     */
+    private static final String KEY_USERSECQUES = "secQuestion";
+    /**
+     * Represents user's security answer.
+     */
+    private static final String KEY_USERSECANS = "secAnswer";
+    /**
+     * Represents user's background color.
+     */
+    private static final String KEY_USERCOLOR = "color";
+    /**
      * String representing a User's account name.
      */
     private static final String KEY_ACCOUNTNAME = "name";
@@ -95,7 +111,9 @@ public class CashFlowDBAdapter { //all methods are needed for functionality
      * String representing the table of users, usernames and passwords.
      */
     private static final String USERS_CREATE = "CREATE TABLE " + USERS + " ("
-            + KEY_USERNAME + TEXT + KEY_USERPASSWORD + " TEXT);";
+            + KEY_USERNAME + TEXT + KEY_USERPASSWORD + TEXT + KEY_USEREMAIL
+            + TEXT + KEY_USERSECQUES + TEXT + KEY_USERSECANS + TEXT
+            + KEY_USERCOLOR + " INT);";
     /**
      * String representing the table of accounts, owners, and names.
      */
@@ -176,6 +194,10 @@ public class CashFlowDBAdapter { //all methods are needed for functionality
         values = new ContentValues();
         values.put(KEY_USERNAME, user.getUsername());
         values.put(KEY_USERPASSWORD, user.getPassword());
+        values.put(KEY_USEREMAIL, user.getEmail());
+        values.put(KEY_USERSECQUES, user.getSecurityQuestion());
+        values.put(KEY_USERSECANS, user.getSecurityAnswer());
+        values.put(KEY_USERCOLOR, user.getBackground());
         sqldb.insert(USERS, null, values);
     }
 
@@ -187,7 +209,8 @@ public class CashFlowDBAdapter { //all methods are needed for functionality
     public final ArrayList<User> getUsers() {
         final ArrayList<User> users = new ArrayList<User>();
 
-        final String[] columns = {KEY_USERNAME, KEY_USERPASSWORD};
+        final String[] columns = {KEY_USERNAME, KEY_USERPASSWORD, KEY_USEREMAIL,
+        		KEY_USERSECQUES, KEY_USERSECANS, KEY_USERCOLOR};
         final Cursor cursor = sqldb
                 .query(USERS, columns, null, null, null, null, null);
 
@@ -195,7 +218,8 @@ public class CashFlowDBAdapter { //all methods are needed for functionality
         for (int i = 0; i < cursor.getCount(); i++) {
             //variable number of users
             final User user = new User(cursor.getString(0),
-                cursor.getString(1));
+                cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                cursor.getString(4), cursor.getInt(5));
             cursor.moveToNext();
             users.add(user);
         }
