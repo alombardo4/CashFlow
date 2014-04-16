@@ -8,17 +8,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity" >
 
-    <EditText
-        android:id="@+id/passwordtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/usernametext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:background="#d3d3d3"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+
 
     <EditText
         android:id="@+id/usernametext"
@@ -31,6 +21,18 @@
         android:ems="10"
         android:hint="@string/username"
         android:inputType="text" />
+    
+    <EditText
+        android:id="@+id/passwordtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernametext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:background="#d3d3d3"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/loginscreenloginbutton"

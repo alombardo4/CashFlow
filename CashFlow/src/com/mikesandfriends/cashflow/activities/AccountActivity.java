@@ -120,6 +120,7 @@ public class AccountActivity extends Activity {
     private void createMenu(final Menu menu) {
         menu.add(0, 0, 1, "Spending Category Report").
         setIcon(R.drawable.ic_action_spendingcategoryreport).
+        setTitle("Spending Category Report").
         setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
