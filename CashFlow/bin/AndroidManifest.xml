@@ -58,6 +58,10 @@
             android:name="com.mikesandfriends.cashflow.activities.SpendingCategoryActivity"
             android:label="@string/title_activity_spending_category" >
         </activity>
+        <activity
+            android:name="com.mikesandfriends.cashflow.activities.TransactionsListActivity"
+            android:label="@string/title_activity_transactions_list" >
+        </activity>
     </application>
 
 </manifest>

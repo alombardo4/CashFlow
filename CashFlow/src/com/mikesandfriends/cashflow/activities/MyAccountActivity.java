@@ -10,9 +10,11 @@ import com.mikesandfriends.cashflow.database.UserDataHandler;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -118,8 +120,9 @@ public class MyAccountActivity extends Activity {
                     day.set(GregorianCalendar.MONTH, date.getMonth());
                     day.set(GregorianCalendar.YEAR, date.getYear());
                     int cat = 0;
-                    final Transaction trans = new Transaction(description
-                            .toString(), money, cat, day);
+                    final Transaction trans =
+                            new Transaction(description.getText().toString(),
+                            money, cat, day);
                     udl.addTransactiontoAccount(trans, new Account(ids), user);
                 } else {
                     CharSequence text;
@@ -171,7 +174,7 @@ public class MyAccountActivity extends Activity {
                         cat = CAT4;
                     }
                     final Transaction trans =
-                            new Transaction(description.toString(),
+                            new Transaction(description.getText().toString(),
                             money, cat, day);
                     udl.addTransactiontoAccount(trans, new Account(ids), user);
                 } else {
@@ -195,8 +198,36 @@ public class MyAccountActivity extends Activity {
 
     @Override
     public final boolean onCreateOptionsMenu(final Menu menu) {
+        createMenu(menu);
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my_account, menu);
+        return true;
+    }
+    /**.
+     * Creates the menu from which the user can choose
+     * the Spending Category Report
+     *
+     * @param menu the menu from which to choose the report
+     */
+
+    private void createMenu(final Menu menu) {
+        menu.add(0, 0, 1, "Transaction List").
+        setIcon(R.drawable.ic_action_transactionlist).
+        setTitle("Transaction List").
+        setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+
+    @Override
+    public final boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == 0) { //android standard practice
+            final Intent intent = new Intent(getBaseContext(),
+                    TransactionsListActivity.class);
+            final Bundle bundle = new Bundle();
+            bundle.putSerializable("user", user);
+            bundle.putSerializable("accountName", ids);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
         return true;
     }
 
