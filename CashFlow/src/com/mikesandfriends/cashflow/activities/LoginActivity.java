@@ -41,7 +41,8 @@ public class LoginActivity extends Activity {
 
         final Button loginButton =
                 (Button) findViewById(R.id.loginscreenloginbutton);
-
+        final Button forgotPass =
+                (Button) findViewById(R.id.forgotButton);
         final UserDataHandler udh = new UserDataHandler(getBaseContext());
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +58,37 @@ public class LoginActivity extends Activity {
                 final EditText password =
                     (EditText) findViewById(R.id.passwordtext);
 
+                final User user = new User(username.getText().toString(),
+                    password.getText().toString());
+                final Bundle bundle = new Bundle();
+                bundle.putSerializable("user", user);
+                intent.putExtras(bundle);
+                if (udh.checkLogin(user)) {
+                    startActivity(intent);
+                    udh.closeAdapt();
+                    finish();
+                } else {
+                    final int duration = Toast.LENGTH_SHORT;
+                    username.setText("");
+                    password.setText("");
+                    Toast.makeText(getBaseContext(), badinput, duration).show();
+
+                }
+            }
+        });
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            /**
+             * Called when the user clicks on the button
+             */
+            @Override
+            public void onClick(final View v1) {
+                final Intent intent = new Intent(getBaseContext(),
+                        AccountActivity.class);
+                final EditText username =
+                    (EditText) findViewById(R.id.usernametext);
+                final EditText password =
+                    (EditText) findViewById(R.id.passwordtext);
+                
                 final User user = new User(username.getText().toString(),
                     password.getText().toString());
                 final Bundle bundle = new Bundle();

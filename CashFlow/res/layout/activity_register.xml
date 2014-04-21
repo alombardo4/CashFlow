@@ -7,38 +7,52 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".RegisterActivity" >
-    
-        <EditText
+
+    <Button
+        android:id="@+id/registerscreenregisterbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailtxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/Register" />
+
+    <EditText
         android:id="@+id/passwordtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/usernametext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_alignLeft="@+id/usernametext"
+        android:layout_alignRight="@+id/usernametext"
+        android:layout_centerVertical="true"
         android:background="#d3d3d3"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
     <EditText
+        android:id="@+id/emailtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/passwordtext"
+        android:layout_alignRight="@+id/passwordtext"
+        android:layout_below="@+id/passwordtext"
+        android:layout_marginTop="34dp"
+        android:background="#d3d3d3"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text|textEmailAddress"
+        android:text="@string/email" />
+
+    <EditText
         android:id="@+id/usernametext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/passwordtext"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="124dp"
+        android:layout_marginBottom="42dp"
         android:background="#d3d3d3"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="text" />
-
-    <Button
-        android:id="@+id/registerscreenregisterbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordtext"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/Register" />
 
 </RelativeLayout>

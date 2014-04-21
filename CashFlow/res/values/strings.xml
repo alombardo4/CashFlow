@@ -36,5 +36,7 @@
     <string name="title_activity_spending_category">SpendingCategoryActivity</string>
     <string name="empty"></string>
     <string name="title_activity_transactions_list">TransactionsListActivity</string>
+    <string name="email">email</string>
+    <string name="forgotPass">Forgot password?</string>
 
 </resources>

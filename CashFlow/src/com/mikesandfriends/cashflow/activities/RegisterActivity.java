@@ -66,14 +66,17 @@ public class RegisterActivity extends Activity {
                     (EditText) findViewById(R.id.usernametext);
                 final EditText password =
                     (EditText) findViewById(R.id.passwordtext);
+                final EditText email =
+                        (EditText) findViewById(R.id.emailtxt);
 
                 // make sure length of username/password is at least of length 1
-                if (username.length() >= 1 && password.length() >= 1) {
+                if (username.length() >= 1 && password.length() >= 1 && email.length()>=1) {
                     if (udh.isValidUsername(username.getText().toString()
                             .toLowerCase().trim())) {
                         final User user = new User(username.getText().toString()
                                 .toLowerCase().trim(), password.getText()
                                 .toString());
+                        user.setEmail(email.getText().toString().toLowerCase().trim());
                         udh.add(user);
                         final Intent intent =
                             new Intent(getBaseContext(), LoginActivity.class);
