@@ -82,29 +82,28 @@ public class LoginActivity extends Activity {
              */
             @Override
             public void onClick(final View v1) {
-                final Intent intent = new Intent(getBaseContext(),
-                        AccountActivity.class);
+                
                 final EditText username =
                     (EditText) findViewById(R.id.usernametext);
-                final EditText password =
-                    (EditText) findViewById(R.id.passwordtext);
-                
-                final User user = new User(username.getText().toString(),
-                    password.getText().toString());
-                final Bundle bundle = new Bundle();
-                bundle.putSerializable("user", user);
-                intent.putExtras(bundle);
-                if (udh.checkLogin(user)) {
-                    startActivity(intent);
-                    udh.closeAdapt();
-                    finish();
-                } else {
+                if(udh.isValidUsername(username.getText().toString()))
+                {
+                    User recovUser = udh.getUserInfo(username.getText().toString());
+                    Intent i = new Intent(Intent.ACTION_SEND);
+                    i.setType("message/rfc822");
+                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{recovUser.getEmail()});
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Lost Password");
+                    i.putExtra(Intent.EXTRA_TEXT   , ""+recovUser.getPassword());
+    
+                    startActivity(Intent.createChooser(i, "Send mail..."));
+                        udh.closeAdapt();
+                        finish();
+                }else {
                     final int duration = Toast.LENGTH_SHORT;
                     username.setText("");
-                    password.setText("");
                     Toast.makeText(getBaseContext(), badinput, duration).show();
-
+    
                 }
+                
             }
         });
     }
