@@ -84,7 +84,7 @@ public class LoginActivity extends Activity {
             public void onClick(final View v1) {
                 final EditText username =
                     (EditText) findViewById(R.id.usernametext);
-                if (udh.isValidUsername(username.getText().toString())) {
+                if (!udh.isValidUsername(username.getText().toString())) {
                     User recovUser =
                           udh.getUserInfo(username.getText().toString());
                     Intent i = new Intent(Intent.ACTION_SEND);
