@@ -58,6 +58,21 @@ public class UserDataHandler {
         return retVal;
         }
 
+     /**
+      * Gets all the info for a specified user.
+      * @param username The username to look up
+      * @return The user's information or null if doesn't exist
+      */
+    public final User getUserInfo(final String username) {
+        final ArrayList<User> userlist = adapt.getUsers();
+        for (final User user : userlist) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     /**
      * Checks the info to the passed information.
      *
