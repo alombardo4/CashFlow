@@ -1,14 +1,12 @@
 package com.mikesandfriends.cashflow;
 
-
-
 /**
  * Class to represent an account.
+ * 
  * @author Alec Lombardo
  * @version 1.0
  */
 public class Account {
-
 
     /**
      * The number used for the hash.
@@ -26,7 +24,9 @@ public class Account {
 
     /**
      * Constructor for Account.
-     * @param aname Name of the account
+     * 
+     * @param aname
+     *            Name of the account
      */
     public Account(final String aname) {
         this.name = aname;
@@ -35,6 +35,7 @@ public class Account {
 
     /**
      * Gets the name of the Account.
+     * 
      * @return name of the account
      */
     public final String getName() {
@@ -45,12 +46,12 @@ public class Account {
     public final int hashCode() {
         int sum = 0;
         if (name.length() > NUMBER) {
-        for (int i = 0, n = name.length(); i < n; i++) {
-            char c = name.charAt(i);
-            int returnValue = (int) c * 2;
-            returnValue += 1;
-            sum = sum + returnValue;
-        }
+            for (int i = 0, n = name.length(); i < n; i++) {
+                char c = name.charAt(i);
+                int returnValue = (int) c * 2;
+                returnValue += 1;
+                sum = sum + returnValue;
+            }
             return sum;
         } else {
             for (int i = 0, n = name.length(); i < n; i++) {
@@ -58,17 +59,17 @@ public class Account {
                 int returnValue = (int) c;
                 sum = sum + returnValue;
             }
-                return sum;
+            return sum;
         }
     }
 
     @Override
     public final boolean equals(final Object obj) {
-        boolean retVal = false; //this must be set to false to compile
+        boolean retVal = false; // this must be set to false to compile
         if (obj == this) {
             retVal = true;
         } else if (obj instanceof Account) {
-            if (((Account) obj).getName().equals(name)) { //Unnecessarily wordy
+            if (((Account) obj).getName().equals(name)) { // Unnecessarily wordy
                 retVal = true;
             }
         } else {
@@ -76,27 +77,29 @@ public class Account {
         }
         return retVal;
     }
-/**
- * Set the balance to a certain amount.
- * 
- * @param newBalance the new balance to set
- */
+
+    /**
+     * Set the balance to a certain amount.
+     * 
+     * @param newBalance
+     *            the new balance to set
+     */
     public final void setBalance(double newBalance) {
-    	accountBalance = newBalance;
+        accountBalance = newBalance;
     }
+
     /**
      * Get the balance.
      */
-    public final double getBalance(){
-    	return accountBalance;
+    public final double getBalance() {
+        return accountBalance;
     }
 
-
     /**
-     * Checks if the balance is still valid
-     * after trying a transaction.
-     *
-     * @param amount amount to subtract from balance
+     * Checks if the balance is still valid after trying a transaction.
+     * 
+     * @param amount
+     *            amount to subtract from balance
      * @return boolean
      */
 
