@@ -24,6 +24,7 @@ public final class R {
         public static final int ic_action_spendingcategoryreport=0x7f020000;
         public static final int ic_action_transactionlist=0x7f020001;
         public static final int ic_launcher=0x7f020002;
+        public static final int splashscreen=0x7f020003;
     }
     public static final class id {
         public static final int SpendingScoller=0x7f080017;
@@ -73,6 +74,7 @@ public final class R {
         public static final int activity_spending_category_report=0x7f030007;
         public static final int activity_transactions_list=0x7f030008;
         public static final int activity_welcome=0x7f030009;
+        public static final int splash_screen=0x7f03000a;
     }
     public static final class menu {
         public static final int account=0x7f070000;
