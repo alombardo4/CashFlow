@@ -76,7 +76,8 @@ public class RegisterActivity extends Activity {
                             .toLowerCase().trim())) {
                         final User user = new User(username.getText().toString()
                                 .toLowerCase().trim(), password.getText()
-                                .toString(), email.getText().toString(), null, null);
+                                .toString(), email.getText().toString(),
+                                null, null);
                         user.setEmail(email.getText().toString().
                                 toLowerCase().trim());
                         udh.add(user);

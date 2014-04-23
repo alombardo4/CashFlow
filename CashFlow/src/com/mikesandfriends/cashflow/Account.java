@@ -2,7 +2,7 @@ package com.mikesandfriends.cashflow;
 
 /**
  * Class to represent an account.
- * 
+ *
  * @author Alec Lombardo
  * @version 1.0
  */
@@ -24,7 +24,7 @@ public class Account {
 
     /**
      * Constructor for Account.
-     * 
+     *
      * @param aname
      *            Name of the account
      */
@@ -35,7 +35,7 @@ public class Account {
 
     /**
      * Gets the name of the Account.
-     * 
+     *
      * @return name of the account
      */
     public final String getName() {
@@ -80,16 +80,17 @@ public class Account {
 
     /**
      * Set the balance to a certain amount.
-     * 
+     *
      * @param newBalance
      *            the new balance to set
      */
-    public final void setBalance(double newBalance) {
+    public final void setBalance(final double newBalance) {
         accountBalance = newBalance;
     }
 
-    /**
-     * Get the balance.
+    /**.
+     * Get the balance
+     * @return the accounts balance.
      */
     public final double getBalance() {
         return accountBalance;
@@ -97,7 +98,7 @@ public class Account {
 
     /**
      * Checks if the balance is still valid after trying a transaction.
-     * 
+     *
      * @param amount
      *            amount to subtract from balance
      * @return boolean
